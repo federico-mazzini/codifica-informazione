@@ -1,0 +1,747 @@
+\documentclass[a4paper,12pt]{article}
+
+% Lingua e codifica
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+
+% Impaginazione e matematica
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+
+% Comandi utili
+\newcommand{\code}[1]{\texttt{#1}}
+
+
+
+\begin{document}
+% ==================================================
+% COPERTINA DISPENSA – VERSIONE AVANZATA
+% ==================================================
+\begin{titlepage}
+\centering
+
+{\Large I.I.S. \textit{``Francesco Alberghetti''} Imola}\\[0.3cm]
+{\normalsize Liceo Scientifico Scienze Applicate}\\[2.2cm]
+
+\rule{0.85\textwidth}{0.8pt}\\[0.9cm]
+
+{\huge\bfseries Codifica dell'informazione}\\[0.4cm]
+{\Large Il sistema binario, esadecimale e cenni di logica booleana}\\[0.6cm]
+
+\rule{0.85\textwidth}{0.8pt}\\[2.5cm]
+
+{\Large Materiale didattico di Informatica}\\[0.3cm]
+
+
+% ICONA OPZIONALE (consigliata)
+% \includegraphics[width=0.3\textwidth]{images/cover_icon.png}
+
+\vfill
+
+{\large Prof. Federico Mazzini}\\[0.3cm]
+{\large Anno scolastico 2025 -- 2026}
+
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Informazione, dato e rappresentazione}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nel contesto dell'informatica tutto ruota intorno a tre concetti fondamentali:
+\begin{itemize}
+  \item \textbf{dato}
+  \item \textbf{informazione}
+  \item \textbf{rappresentazione}
+\end{itemize}
+
+Questi termini vengono spesso usati in modo intuitivo. Risulta quindi utile fissare una distinzione chiara.
+
+\subsection{Dato}
+
+Per \textbf{dato} si intende un elemento grezzo, non ancora interpretato. Un numero scritto su un foglio, una sequenza di simboli, una misura in forma numerica costituiscono dati.
+
+Un esempio:
+\begin{itemize}
+  \item La scritta \code{42} rappresenta un dato. Da sola, non indica se si parla di una temperatura, di un'età, di un punteggio o di un codice.
+\end{itemize}
+
+\subsection{Informazione}
+
+L'\textbf{informazione} nasce quando un dato viene interpretato in un contesto.
+
+Esempi:
+\begin{itemize}
+  \item \code{42} accompagnato dalla parola ``anni'' viene interpretato come un'età.
+  \item \code{42 °C} indica una temperatura.
+  \item \code{42 km} rappresenta una distanza.
+\end{itemize}
+
+Il significato dipende quindi dal \textbf{contesto} e dalle \textbf{regole di interpretazione} condivise.
+
+\subsection{Rappresentazione}
+
+La \textbf{rappresentazione} riguarda il modo in cui un'informazione viene codificata. La stessa informazione può avere rappresentazioni differenti.
+
+Esempi:
+\begin{itemize}
+  \item Il numero quarantadue può essere rappresentato come \code{42} in decimale, \code{101010} in binario, \code{2A} in esadecimale.
+  \item Una nota musicale può essere rappresentata come simbolo sul pentagramma, come frequenza in Hz, come sequenza di campioni digitali.
+\end{itemize}
+
+Nel calcolatore ogni rappresentazione deve essere ricondotta a una sequenza di bit. Questo costituisce il punto di partenza per tutto il resto.
+
+\subsection{Perché serve una rappresentazione digitale}
+
+I dispositivi elettronici lavorano con segnali elettrici che assumono stati distinti (ad esempio, presenza o assenza di tensione). Risulta naturale sfruttare due soli stati logici e rappresentarli con i simboli 0 e 1. 
+
+Tutta l'informatica digitale si basa su questa scelta: due stati ben separati sono più affidabili da distinguere fisicamente rispetto a molti stati intermedi. Da qui nasce la rappresentazione binaria.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bit, byte e quantità di informazione}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Il bit}
+
+Il \textbf{bit} (\emph{binary digit}) costituisce l'unità minima di informazione trattata da un calcolatore. Può assumere solo due valori possibili:
+\begin{center}
+0 oppure 1
+\end{center}
+
+\subsection{Il byte e i suoi multipli}
+
+Per ragioni pratiche i bit vengono raggruppati in blocchi di 8. Otto bit formano un \textbf{byte}. Il byte rappresenta l'unità di misura di base per la memoria e per la capacità di memorizzazione.
+
+Multipli più comuni:
+\begin{itemize}
+  \item 1 KB (kilobyte) = 1024 byte
+  \item 1 MB (megabyte) = 1024 KB
+  \item 1 GB (gigabyte) = 1024 MB
+  \item 1 TB (terabyte) = 1024 GB
+\end{itemize}
+
+L'uso di 1024 anziché 1000 è dovuto alla natura binaria dei calcolatori: 1024= $2^{10}$.
+
+\subsection{Numero di stati rappresentabili}
+
+Con $n$ bit è possibile rappresentare $2^n$ configurazioni diverse. Ogni bit può assumere 2 valori, quindi le combinazioni totali si ottengono moltiplicando:
+\[
+2 \cdot 2 \cdot 2 \cdots 2 = 2^n
+\]
+
+In maniera molto intuitiva:
+\begin{itemize}
+  \item con 1 bit → 2 stati (0,1)
+  \item con 2 bit → 4 stati (00,01,10,11)
+  \item con 3 bit → 8 stati
+  \item con 8 bit → 256 stati
+  \item con 16 bit → 65536 stati
+\end{itemize}
+
+Questa formula è alla base di tutte le scelte di codifica: numero di colori rappresentabili, caratteri possibili, livelli di intensità sonora, ecc.
+
+\subsection{Quantità di informazione e scelta del numero di bit}
+
+Maggiore è il numero di stati da distinguere, maggiore deve essere il numero di bit utilizzati. Ad esempio:
+\begin{itemize}
+  \item per rappresentare i numeri da 0 a 9 non basta usare 3 bit (8 stati), sono necessari almeno 4 bit (16 stati), anche se alcuni rimangono inutilizzati.
+  \item per rappresentare tutti i caratteri di base di una tastiera vengono usati 7 o 8 bit.
+  \item per rappresentare un colore in formato RGB a 24 bit vengono sfruttati 8 bit per ciascuno dei tre canali (rosso, verde, blu).
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{I sistemi di numerazione posizionale}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Per comprendere il sistema binario risulta utile definire il funzionamento del sistema decimale.
+
+\subsection{Sistema decimale}
+
+Il sistema decimale si basa sulla \textbf{base 10}. Ciò significa che:
+\begin{itemize}
+  \item sono disponibili 10 \textbf{simboli}: da 0 a 9;
+  \item ogni \textbf{posizione} rappresenta una \textbf{potenza} di 10.
+\end{itemize}
+Esempio:
+\[
+472 = 400 + 70 + 2 = 4 \cdot 10^2 + 7 \cdot 10^1 + 2 \cdot 10^0
+\]
+Il valore di una cifra dipende quindi sia dal simbolo, sia dalla posizione.
+
+\subsection{Definizione di sistema posizionale}
+
+Un sistema di numerazione posizionale è caratterizzato da:
+\begin{itemize}
+  \item una base $b$ (numero di simboli disponibili);
+  \item un insieme di cifre da 0 a $b-1$;
+  \item il valore di ciascuna cifra è dato dalla cifra stessa moltiplicata per una potenza della base.
+\end{itemize}
+Un numero generico in base $b$ può essere scritto come:
+\[
+(a_n a_{n-1} \dots a_1 a_0)_b
+\]
+e interpretato come:
+\[
+ a_n b^n + a_{n-1} b^{n-1} + \dots + a_1 b^1 + a_0 b^0
+\]
+
+\subsection{Sistema binario}
+
+Il sistema binario utilizza base 2. Le cifre possibili sono solo due:
+\begin{center}
+0 e 1
+\end{center}
+
+Ogni posizione rappresenta una potenza di 2:
+\[
+\dots, 2^4, 2^3, 2^2, 2^1, 2^0
+\]
+Esempio di interpretazione:
+\[
+(1011)_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = 8 + 0 + 2 + 1 = 11_{10}
+\]
+
+\subsection{Perché il binario è usato nei calcolatori}
+
+La scelta della base 2 non è casuale. Due stati logici distinti si prestano a essere rappresentati con facilità mediante livelli di tensione differenti (ad esempio, alto/basso, presenza di corrente elettrica oppure no). La semplicità a livello fisico si traduce in affidabilità e velocità.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conversioni tra decimale e binario}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Conversione da binario a decimale}
+
+La conversione da binario a decimale segue direttamente la definizione di sistema posizionale.
+
+Procedura:
+\begin{enumerate}
+  \item si scrive il numero binario separando le cifre;
+  \item si associa a ogni cifra la potenza di 2 corrispondente (partendo da destra con $2^0$);
+  \item si moltiplica ogni cifra (0 o 1) per la propria potenza di 2;
+  \item si sommano i risultati.
+\end{enumerate}
+
+Esempio:
+\[
+\begin{aligned}
+(11010)_2 &= 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
+          &= 16 + 8 + 0 + 2 + 0 = 26_{10}
+\end{aligned}
+\]
+
+\subsection{Conversione da decimale a binario: metodo delle divisioni successive}
+
+Il metodo più comune per la conversione da decimale a binario si basa su divisioni successive per 2.
+
+Procedura generale:
+\begin{enumerate}
+  \item si divide il numero decimale per 2;
+  \item si registra il resto (0 o 1);
+  \item si sostituisce il numero con il quoziente della divisione;
+  \item si ripete fino a ottenere quoziente 0;
+  \item si leggono i resti dal basso verso l'alto.
+\end{enumerate}
+Esempio: conversione di 19 in binario.
+\[
+\begin{aligned}
+19 : 2 &= 9 \quad \text{e resto } 1 \\
+9 : 2  &= 4 \quad \text{e resto } 1 \\
+4 : 2  &= 2 \quad \text{e resto } 0 \\
+2 : 2  &= 1 \quad \text{e resto } 0 \\
+1 : 2  &= 0 \quad \text{e resto } 1
+\end{aligned}
+\]
+
+Lettura dei resti dal basso verso l'alto:
+\[
+19_{10} = (10011)_2
+\]
+
+\subsection{Osservazioni sulle conversioni}
+
+Le procedure di conversione non rappresentano solo un esercizio di calcolo: consentono di comprendere come il calcolatore interpreti i numeri e mostrano il legame stretto tra rappresentazione binaria e struttura interna della macchina.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Il sistema esadecimale}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Definizione}
+
+Il sistema esadecimale utilizza base 16. Ciò significa che vengono impiegati 16 simboli distinti:
+\begin{itemize}
+  \item le cifre decimali da 0 a 9;
+  \item le lettere maiuscole da A a F.
+\end{itemize}
+
+Le lettere rappresentano i valori decimali da 10 a 15, come mostrato in tabella:
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Simbolo & Valore decimale \\
+\midrule
+A & 10 \\
+B & 11 \\
+C & 12 \\
+D & 13 \\
+E & 14 \\
+F & 15 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Un numero esadecimale viene talvolta scritto con un prefisso (ad esempio \code{0x2A}) per distinguerlo da un numero decimale.
+
+\subsection{Collegamento con il binario}
+
+La base 16 risulta particolarmente comoda in ambito informatico per il legame diretto con la base 2:
+\[
+2^4 = 16
+\]
+
+Questa uguaglianza implica che \textbf{ogni gruppo di 4 bit} può essere rappresentato con una \textbf{singola cifra esadecimale} e viceversa.
+
+Tabella di corrispondenza tra tutti i blocchi possibili di 4 bit e le cifre esadecimali:
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Binario & Esadecimale \\
+\midrule
+0000 & 0 \\
+0001 & 1 \\
+0010 & 2 \\
+0011 & 3 \\
+0100 & 4 \\
+0101 & 5 \\
+0110 & 6 \\
+0111 & 7 \\
+1000 & 8 \\
+1001 & 9 \\
+1010 & A \\
+1011 & B \\
+1100 & C \\
+1101 & D \\
+1110 & E \\
+1111 & F \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Questa corrispondenza rende l'esadecimale una sorta di ``abbreviazione leggibile'' del binario.
+
+\subsection{Conversione binario -- esadecimale}
+
+Grazie alla corrispondenza per gruppi di 4 bit, la conversione risulta diretta e meccanica.
+
+\subsubsection*{Da binario a esadecimale}
+
+Procedura generale:
+\begin{enumerate}
+  \item si parte dal numero binario;
+  \item si raggruppano i bit in blocchi da 4 a partire da destra (se necessario si aggiungono zeri a sinistra nell'ultimo blocco);
+  \item per ciascun blocco di 4 bit si individua la cifra esadecimale corrispondente nella tabella;
+  \item si scrivono le cifre esadecimali nello stesso ordine.
+\end{enumerate}
+
+\paragraph{Esempio 1}
+
+Conversione di \((10110110)_2\) in esadecimale.
+
+\[
+10110110_2
+\]
+
+Raggruppamento in blocchi da 4 bit partendo da destra:
+\[
+1011 \quad 0110
+\]
+
+Da tabella:
+\[
+1011_2 = B_{16}, \quad 0110_2 = 6_{16}
+\]
+
+Quindi:
+\[
+(10110110)_2 = (B6)_{16}
+\]
+
+\paragraph{Esempio 2}
+
+Conversione di \((1100101)_2\) in esadecimale.
+
+Il numero possiede 7 bit, non un multiplo di 4. Si completa il blocco più a sinistra aggiungendo uno zero:
+\[
+(1100101)_2 = (0110\ 0101)_2
+\]
+
+Blocchi da 4 bit:
+\[
+0110 \quad 0101
+\]
+
+Da tabella:
+\[
+0110_2 = 6_{16}, \quad 0101_2 = 5_{16}
+\]
+
+Quindi:
+\[
+(1100101)_2 = (65)_{16}
+\]
+
+\subsubsection*{Da esadecimale a binario}
+
+Procedura generale:
+\begin{enumerate}
+  \item si considera ciascuna cifra esadecimale;
+  \item per ogni cifra si sostituisce il corrispondente blocco di 4 bit;
+  \item si concatenano i blocchi ottenuti.
+\end{enumerate}
+
+\paragraph{Esempio 3}
+
+Conversione di \((3F)_{16}\) in binario.
+
+\begin{itemize}
+  \item \(3_{16} \rightarrow 0011_2\)
+  \item \(F_{16} \rightarrow 1111_2\)
+\end{itemize}
+
+Quindi:
+\[
+(3F)_{16} = (0011\ 1111)_2 = (00111111)_2
+\]
+
+\paragraph{Esempio 4}
+
+Conversione di \((A2)_{16}\) in binario.
+
+\begin{itemize}
+  \item \(A_{16} \rightarrow 1010_2\)
+  \item \(2_{16} \rightarrow 0010_2\)
+\end{itemize}
+
+Quindi:
+\[
+(A2)_{16} = (1010\ 0010)_2 = (10100010)_2
+\]
+
+\subsection{Perché usare l'esadecimale}
+
+La scrittura binaria di numeri lunghi risulta poco leggibile e difficile da controllare a colpo d'occhio. L'esadecimale offre:
+
+\begin{itemize}
+  \item una \textbf{forma più compatta}: riduce la lunghezza delle sequenze rispetto al binario;
+  \item una \textbf{relazione diretta con il binario}: la conversione avviene per gruppi di 4 bit, senza calcoli complessi;
+  \item una \textbf{maggiore leggibilità} per esseri umani in contesti tecnici (programmazione di basso livello, analisi della memoria, debug).
+\end{itemize}
+
+In molti strumenti di sviluppo, valori che la macchina tratta in binario vengono presentati in esadecimale perché risulta un compromesso efficace tra ``vicinanza all'hardware'' e comprensione umana.
+\subsection{Perché si usa l'esadecimale}
+
+Le sequenze di bit risultano poco leggibili quando diventano lunghe. L'esadecimale permette di riscrivere gruppi di bit in una forma più compatta e comprensibile, mantenendo comunque una corrispondenza esatta con il binario.
+
+In pratica, i bit vengono raggruppati a gruppi di 4 e ogni gruppo viene sostituito con una cifra esadecimale. In questo modo una lunga sequenza di 0 e 1 si trasforma in pochi simboli più facili da interpretare.
+
+\paragraph{Esempio}
+
+Si consideri il numero binario:
+\[
+(101010)_2
+\]
+
+Poiché il numero contiene 6 bit, si aggiungono zeri a sinistra fino a ottenere un multiplo di 4:
+\[
+(101010)_2 = (0010\ 1010)_2
+\]
+
+Si convertono i blocchi separatamente:
+\[
+0010_2 = 2_{16}, \quad 1010_2 = A_{16}
+\]
+
+Si ottiene quindi:
+\[
+(101010)_2 = (2A)_{16}
+\]
+
+Questo esempio mostra come una sequenza binaria venga trasformata in una forma più compatta e leggibile. L'esadecimale consente quindi di ``tradurre'' il linguaggio dei bit in una notazione più adatta alla lettura umana, pur rimanendo rigorosamente legata alla rappresentazione interna del calcolatore.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Logica booleana}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Decisioni sì/no}
+
+Nella vita quotidiana le decisioni spesso dipendono da condizioni che possono essere considerate vere o false.
+
+Esempi:
+\begin{itemize}
+  \item ``se piove, allora si usa l'ombrello'';
+  \item ``se l'età è maggiore o uguale a 18, allora è consentito votare'';
+  \item ``se la batteria è scarica, allora si ricarica il dispositivo''.
+\end{itemize}
+
+Ogni affermazione del tipo ``condizione → azione'' può essere formalizzata con la logica booleana.
+
+\subsection{Variabile booleana}
+
+Una \textbf{variabile booleana} può assumere solo due valori:
+\begin{itemize}
+  \item vero (spesso indicato con 1);
+  \item falso (spesso indicato con 0).
+\end{itemize}
+
+Questo modello è perfettamente compatibile con la rappresentazione mediante bit.
+
+\subsection{Operatori logici fondamentali}
+
+Gli operatori logici di base sono:
+\begin{description}
+  \item[NOT] (negazione): inverte il valore di verità.
+  \item[AND] (congiunzione): è vero solo se entrambe le condizioni sono vere.
+  \item[OR] (disgiunzione inclusiva): è vero se almeno una delle condizioni è vera.
+\end{description}
+
+\subsection{Tabelle di verità}
+Le tabelle di verità descrivono il comportamento di un operatore logico rispetto a tutti i possibili input.
+
+\bigskip
+
+\noindent\textbf{Operatore NOT (negazione)}
+
+L'operatore NOT inverte il valore logico della variabile: il vero diventa falso e il falso diventa vero.
+
+\[
+\begin{array}{c|c}
+A & \text{NOT } A \\
+\hline
+0 & 1 \\
+1 & 0
+\end{array}
+\]
+
+\bigskip
+
+\noindent\textbf{Operatore AND (congiunzione)}
+
+L'operatore AND restituisce vero solo quando entrambe le variabili assumono valore vero.
+
+\[
+\begin{array}{c|c|c}
+A & B & A \land B \\
+\hline
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{array}
+\]
+
+\bigskip
+
+\noindent\textbf{Operatore OR (disgiunzione)}
+
+L'operatore OR restituisce vero quando almeno una delle due variabili è vera.
+
+\[
+\begin{array}{c|c|c}
+A & B & A \lor B \\
+\hline
+0 & 0 & 0 \\
+0 & 1 & 1 \\
+1 & 0 & 1 \\
+1 & 1 & 1
+\end{array}
+\]
+
+\subsection{Proprietà degli operatori logici}
+
+Gli operatori AND e OR possiedono diverse proprietà utili nella semplificazione delle espressioni booleane.
+
+\paragraph{Proprietà commutativa}
+
+Per AND e OR vale:
+\[
+A \land B = B \land A \\
+A \lor B = B \lor A
+\]
+
+\paragraph{Proprietà associativa}
+
+L'ordine di raggruppamento non modifica il risultato:
+\[
+(A \land B) \land C = A \land (B \land C) \\
+(A \lor B) \lor C = A \lor (B \lor C)
+\]
+
+\paragraph{Proprietà distributiva}
+
+AND e OR si distribuiscono in modo analogo a moltiplicazione e somma:
+\[
+A \land (B \lor C) = (A \land B) \lor (A \land C) \\
+A \lor (B \land C) = (A \lor B) \land (A \lor C)
+\]
+
+\subsection{Leggi di De Morgan}
+
+Le leggi di De Morgan permettono di trasformare la negazione di una congiunzione in una disgiunzione di negazioni e viceversa:
+\[
+\neg(A \land B) = (\neg A) \lor (\neg B) \\
+\neg(A \lor B) = (\neg A) \land (\neg B)
+\]
+
+Queste trasformazioni risultano fondamentali nella progettazione di circuiti logici e nella semplificazione di condizioni nei programmi.
+
+\subsection{Espressioni booleane}
+
+Un'espressione booleana combina variabili booleane e operatori logici.
+
+Esempio:
+\[
+(A \land B) \lor (\neg C)
+\]
+
+Un'espressione di questo tipo può rappresentare una regola decisionale, una condizione di controllo o il comportamento di un circuito.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codifica dei caratteri}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Dal simbolo al numero}
+
+Per memorizzare e trasmettere testo, ogni carattere deve essere associato a un codice numerico. Questo codice viene poi rappresentato in binario e memorizzato come sequenza di bit.
+
+\subsection{Codifica ASCII}
+
+La codifica \textbf{ASCII} (American Standard Code for Information Interchange) è una delle prime standardizzazioni per la rappresentazione dei caratteri.
+
+Caratteristiche principali:
+\begin{itemize}
+  \item utilizzo di 7 bit per carattere (128 possibili simboli);
+  \item presenza di lettere maiuscole e minuscole dell'alfabeto inglese;
+  \item cifre da 0 a 9;
+  \item segni di punteggiatura;
+  \item alcuni caratteri di controllo (invio, tabulazione, ecc.).
+\end{itemize}
+
+Esempi:
+\begin{itemize}
+  \item il carattere \code{'A'} corrisponde al codice decimale 65;
+  \item il carattere \code{'0'} corrisponde a 48;
+  \item lo spazio corrisponde a 32.
+\end{itemize}
+
+\subsection{Limiti di ASCII}
+
+ASCII è stato progettato per l'inglese. Non include lettere accentate, caratteri di alfabeti non latini, simboli di lingue asiatiche o emoji.
+
+Con la diffusione globale dei calcolatori è diventato necessario un sistema molto più ricco e flessibile.
+
+\subsection{Unicode}
+
+\textbf{Unicode} nasce con l'obiettivo di assegnare un codice univoco a ogni carattere di ogni lingua, simbolo matematico, segno grafico, emoji.
+
+\begin{itemize}
+  \item Ogni simbolo è identificato da un ``punto di codice'' (code point), spesso scritto nella forma \code{U+XXXX}.
+  \item Esempio: la lettera \code{"A"} ha code point \code{U+0041}.
+  \item La lettera "è" ha un code point diverso, così come le varie emoji.
+\end{itemize}
+
+Unicode definisce l'insieme dei simboli, ma non il modo specifico in cui vengono rappresentati in memoria.
+
+\subsection{UTF-8}
+
+UTF-8 è una delle possibili \textbf{codifiche} di Unicode. Le sue caratteristiche fondamentali sono:
+\begin{itemize}
+  \item codifica a lunghezza variabile: da 1 a 4 byte per carattere;
+  \item compatibilità con ASCII: i primi 128 caratteri (quelli ASCII) vengono rappresentati con un singolo byte identico ad ASCII;
+  \item caratteri non ASCII (accenti, simboli, emoji) utilizzano 2, 3 o 4 byte.
+\end{itemize}
+
+Esempio qualitativo:
+\begin{itemize}
+  \item \code{'A'} → 1 byte;
+  \item \code{'è'} → tipicamente 2 byte in UTF-8;
+  \item un'emoji richiede invece più byte.
+\end{itemize}
+
+Questa codifica risulta oggi estremamente diffusa, poiché permette di combinare compattezza per il testo semplice e flessibilità per simboli complessi.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Codifica delle immagini}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Immagini raster}
+
+Le immagini digitali di uso comune (fotografie, screenshot, immagini mostrate su schermo) sono generalmente rappresentate in formato \textbf{raster}.
+
+Un'immagine raster è composta da una griglia regolare di \textbf{pixel}, ovvero i più piccoli elementi visivi che la costituiscono. Ogni pixel contiene un'informazione relativa al colore.
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{images/raster-graphic.jpg}
+
+\emph{Ingrandimento di un'immagine raster con evidenza della griglia di pixel.}
+\end{center}
+
+Quando un'immagine raster viene ingrandita oltre una certa soglia, la struttura a pixel diventa visibile, producendo l'effetto ``sgranato''.
+
+\subsection{Risoluzione}
+
+La \textbf{risoluzione} indica il numero di pixel presenti in orizzontale e verticale. Determina il livello di dettaglio dell'immagine.
+
+Esempi comuni:
+\begin{itemize}
+  \item 800×600 pixel → bassa definizione
+  \item 1920×1080 pixel → Full HD
+  \item 3840×2160 pixel → 4K
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/raster-strawberry.jpeg}
+
+\end{center}
+
+\subsection{Profondità di colore}
+
+La \textbf{profondità di colore} indica quanti bit vengono utilizzati per rappresentare il colore di ciascun pixel. Valori tipici:
+\begin{itemize}
+  \item 1 bit → solo bianco e nero
+  \item 8 bit → 256 livelli di grigio
+  \item 24 bit → RGB, oltre 16 milioni di colori
+\end{itemize}
+
+Il numero di colori rappresentabili è dato dal valore: $2^n$
+
+\begin{center}
+\includegraphics[width=0.55\textwidth]{images/bit-depth-example.png}
+
+\end{center}
+
+\subsection{Immagini vettoriali}
+
+Le \textbf{immagini vettoriali} non sono descritte tramite pixel, ma attraverso formule matematiche che definiscono linee, curve e forme geometriche. Ogni elemento viene rappresentato come oggetto scalabile, il cui aspetto non dipende dalla risoluzione dello schermo.
+
+Grazie a questa caratteristica, l'ingrandimento non comporta perdita di qualità: i contorni rimangono sempre nitidi e privi di sgranature. Questo rende le immagini vettoriali particolarmente adatte per loghi, icone, diagrammi e grafici tecnici.
+
+\begin{center} 
+\includegraphics[width=0.5\textwidth]{images/Vector_vs_raster.png}
+
+\emph{Confronto tra immagine raster e vettoriale a forte ingrandimento.}
+\end{center}
+
+Un comportamento analogo si osserva in molti file PDF: durante lo zoom, testo e linee restano perfettamente definiti perché descritti mediante elementi vettoriali. Se il PDF contiene invece immagini raster, l’ingrandimento evidenzia la struttura a pixel e produce sgranature visibili.
+
+\end{document}
