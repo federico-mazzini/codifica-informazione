@@ -121,6 +121,8 @@ Il \textbf{bit} (\emph{binary digit}) costituisce l'unità minima di informazion
 
 Per ragioni pratiche i bit vengono raggruppati in blocchi di 8. Otto bit formano un \textbf{byte}. Il byte rappresenta l'unità di misura di base per la memoria e per la capacità di memorizzazione.
 
+
+
 Multipli più comuni:
 \begin{itemize}
   \item 1 KB (kilobyte) = 1024 byte
@@ -129,6 +131,7 @@ Multipli più comuni:
   \item 1 TB (terabyte) = 1024 GB
 \end{itemize}
 
+\subsubsection*{Perchè proprio 1024?}
 L'uso di 1024 anziché 1000 è dovuto alla natura binaria dei calcolatori: 1024= $2^{10}$.
 
 \subsection{Numero di stati rappresentabili}
@@ -158,6 +161,19 @@ Maggiore è il numero di stati da distinguere, maggiore deve essere il numero di
   \item per rappresentare un colore in formato RGB a 24 bit vengono sfruttati 8 bit per ciascuno dei tre canali (rosso, verde, blu).
 \end{itemize}
 
+\subsubsection*{Perché proprio 1 byte = 8 bit?}
+Nei primi calcolatori (dal 1950) non esisteva una dimensione ``giusta'' per il gruppo di bit: furono sperimentate soluzioni con 6, 7, 9 bit e oltre. Il blocco da 8 bit si è però imposto nel tempo come standard perché rappresenta un buon compromesso tra semplicità hardware e capacità informativa.
+
+Con 8 bit si hanno infatti $2^8 = 256$ combinazioni possibili. Questo numero di stati è sufficiente a rappresentare:
+\begin{itemize}
+  \item le lettere maiuscole e minuscole dell'alfabeto inglese;
+  \item le cifre da 0 a 9;
+  \item la punteggiatura e vari simboli speciali;
+  \item alcuni codici di controllo (ad esempio invio, lo spazio, ecc.).
+\end{itemize}
+Inoltre, 8 è una potenza di 2 ($2^3 = 8$).
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{I sistemi di numerazione posizionale}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
