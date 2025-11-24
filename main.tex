@@ -639,61 +639,195 @@ Un'espressione di questo tipo può rappresentare una regola decisionale, una con
 
 Per memorizzare e trasmettere testo, ogni carattere deve essere associato a un codice numerico. Questo codice viene poi rappresentato in binario e memorizzato come sequenza di bit.
 
+\subsubsection*{L'importanza di standard comuni}
+
+Le codifiche caratteri permettono di trasformare un dato in informazione e risultano così importanti perché vengono utilizzate e condivise in tutto il mondo. Se ogni produttore di computer o ogni programma usasse una codifica ``personale'' e diversa dalle altre, lo stesso testo sarebbe diverso da computer a computer, o da nazione a nazione. L'informatica, essendo una disciplina globale, basa tutto il suo mondo sull'utilizzo di standard comuni.\\\\
+Grazie a standard comuni:
+\begin{itemize}
+  \item un file di testo scritto su un computer può essere letto correttamente su un altro;
+  \item messaggi, email e pagine web mantengono gli stessi caratteri, accenti e simboli indipendentemente dal dispositivo;
+  \item è possibile scambiare informazioni tra sistemi diversi senza dover riconvertire continuamente la rappresentazione dei caratteri.
+\end{itemize}
+La presenza di standard condivisi rende quindi possibile la comunicazione digitale su scala globale.
+
 \subsection{Codifica ASCII}
 
-La codifica \textbf{ASCII} (American Standard Code for Information Interchange) è una delle prime standardizzazioni per la rappresentazione dei caratteri.
+La codifica \textbf{ASCII} (American Standard Code for Information Interchange) è una delle prime standardizzazioni per la rappresentazione dei caratteri. Il suo scopo è associare in modo univoco ad ogni carattere un numero intero.
 
 Caratteristiche principali:
 \begin{itemize}
-  \item utilizzo di 7 bit per carattere (128 possibili simboli);
+  \item utilizzo di 7 bit per carattere (128 possibili simboli, da 0 a 127);
   \item presenza di lettere maiuscole e minuscole dell'alfabeto inglese;
   \item cifre da 0 a 9;
   \item segni di punteggiatura;
   \item alcuni caratteri di controllo (invio, tabulazione, ecc.).
 \end{itemize}
 
-Esempi:
-\begin{itemize}
-  \item il carattere \code{'A'} corrisponde al codice decimale 65;
-  \item il carattere \code{'0'} corrisponde a 48;
-  \item lo spazio corrisponde a 32.
-\end{itemize}
+Il calcolatore non memorizza direttamente le lettere, ma memorizza i \textbf{codici numerici} corrispondenti. La tastiera invia il codice del tasto premuto e il programma visualizza il carattere associato al codice.
 
-\subsection{Limiti di ASCII}
+Esempi di associazione tra caratteri e codici ASCII:
 
-ASCII è stato progettato per l'inglese. Non include lettere accentate, caratteri di alfabeti non latini, simboli di lingue asiatiche o emoji.
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Carattere & Codice decimale & Codice binario (8 bit) \\
+\midrule
+\code{'0'} & 48 & 00110000 \\
+\code{'1'} & 49 & 00110001 \\
+\code{'A'} & 65 & 01000001 \\
+\code{'B'} & 66 & 01000010 \\
+\code{'a'} & 97 & 01100001 \\
+spazio & 32 & 00100000 \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-Con la diffusione globale dei calcolatori è diventato necessario un sistema molto più ricco e flessibile.
+
+ASCII è stato progettato per l'inglese. Non include le lettere accentate, caratteri di alfabeti non latini, simboli di lingue asiatiche o emoji. Con la diffusione globale dei calcolatori è diventato necessario utilizzare sistemi che permettessero di rappresentare molti più simboli. Oggi, quindi, la codifica ASCII non è più molto utilizzata. Altrimenti non potremmo rappresentare le emoji, limitandoci ad esempio a questo :D
+
+
+\begin{center}
+\includegraphics[width=1\textwidth]{images/ascii-table.jpg}
+
+\emph{Tabella ASCII completa}
+\end{center}
+
+
+\subsubsection*{Esempio completo: da testo a numeri}
+
+Si consideri la frase:
+\begin{center}
+\code{"ciao a tutti"}
+\end{center}
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Carattere & Codice decimale ASCII \\
+\midrule
+\code{'c'} & 99 \\
+\code{'i'} & 105 \\
+\code{'a'} & 97 \\
+\code{'o'} & 111 \\
+spazio     & 32 \\
+\code{'a'} & 97 \\
+spazio     & 32 \\
+\code{'t'} & 116 \\
+\code{'u'} & 117 \\
+\code{'t'} & 116 \\
+\code{'t'} & 116 \\
+\code{'i'} & 105 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Seguendo la tabella ASCII, la frase \code{"ciao a tutti"} viene memorizzata come una sequenza di numeri:
+\[
+\text{``ciao a tutti''} \rightarrow 99\;105\;97\;111\;32\;97\;32\;116\;117\;116\;116\;105
+\]
+In codice binario, quindi sul nostro computer, la frase è rappresentata in questa maniera:
+\[
+\begin{aligned}
+\text{``ciao a tutti''} \rightarrow\ &01100011\;01101001\;01100001\;01101111\;00100000\;01100001\\
+                                     &00100000\;01110100\;01110101\;01110100\;01110100\;01101001
+\end{aligned}
+\]
+
+\subsubsection*{L'astrazione che ritorna}
+Quello che al nostro occhio appare come una sequenza di lettere e spazi, per il calcolatore è solamente una sequenza di segnali elettrici (0 e 1). Anche in questo caso possiamo parlare di \textbf{astrazione}. Nascondiamo i segnali elettrici, nascondiamo i bit e i numeri della tabella ASCII, rimane il livello umano, quello (per noi) semplice da capire e veramente utile.
+
+
 
 \subsection{Unicode}
 
-\textbf{Unicode} nasce con l'obiettivo di assegnare un codice univoco a ogni carattere di ogni lingua, simbolo matematico, segno grafico, emoji.
+La codifica \textbf{Unicode} nasce per risolvere un problema semplice: i computer non vengono usati solo da persone che scrivono in inglese. La codifica ASCII, metteva a disposizione 128 possibili caratteri, ma ad oggi, tra lettere accentate, alfabeti diversi (greco, cirillico, arabo, ecc.), simboli matematici, frecce, segni grafici ed emoji, i caratteri da rappresentare sono migliaia.
 
-\begin{itemize}
-  \item Ogni simbolo è identificato da un ``punto di codice'' (code point), spesso scritto nella forma \code{U+XXXX}.
-  \item Esempio: la lettera \code{"A"} ha code point \code{U+0041}.
-  \item La lettera "è" ha un code point diverso, così come le varie emoji.
-\end{itemize}
 
-Unicode definisce l'insieme dei simboli, ma non il modo specifico in cui vengono rappresentati in memoria.
+L'idea di base di Unicode è simile a quella di ASCII: \textbf{ogni simbolo che può comparire su uno schermo o in un testo digitale riceve un numero}. La vera differenza sta nel \emph{quantitativo} di simboli che si possono rappresentare.
+Nel codice ASCII classico, usando 7 bit, si hanno a disposizione 
+\[
+2^7 = 128 \text{ simboli diversi},
+\] 
+Unicode utilizza numeri più grandi, scritti spesso in \textbf{codice esadecimale} per comodità. Con 5 cifre esadecimali si possono rappresentare fino a
+\[
+16^5 = 1\,048\,576 \text{ simboli diversi},
+\]
+molto di più dei 128 di ASCII :D. 
+
+
+\begin{center}
+\includegraphics[width=1\textwidth]{images/unicode-emoji.png}
+
+\emph{Tabella parziale Unicode rappresentante alcune emoji}
+\end{center}
+
+In sintesi, Unicode definisce un grande ``dizionario'' mondiale dei simboli, molto più ampio di quello offerto da ASCII, in cui a ogni simbolo corrisponde un numero univoco.
+
+Questo dizionario stabilisce \emph{quali} simboli esistono e \emph{quale} numero li rappresenta, ma non specifica ancora \emph{come} questi numeri vengano memorizzati in termini di byte e bit. Per passare dai code point ai bit veri e propri, quindi alla \textbf{rappresentazione pratica} si usano delle regole chiamate \textbf{codifiche}, la più importante è UTF-8.
+
 
 \subsection{UTF-8}
 
-UTF-8 è una delle possibili \textbf{codifiche} di Unicode. Le sue caratteristiche fondamentali sono:
+UTF-8 è una delle possibili \textbf{codifiche} di Unicode. \\\\
+Le sue caratteristiche fondamentali sono:
 \begin{itemize}
   \item codifica a lunghezza variabile: da 1 a 4 byte per carattere;
   \item compatibilità con ASCII: i primi 128 caratteri (quelli ASCII) vengono rappresentati con un singolo byte identico ad ASCII;
   \item caratteri non ASCII (accenti, simboli, emoji) utilizzano 2, 3 o 4 byte.
 \end{itemize}
+La lunghezza variabile di UTF-8 può essere illustrata mostrando la reale rappresentazione in bit di alcuni caratteri e parole:
 
-Esempio qualitativo:
+\begin{center}
+\begin{tabular}{>{\ttfamily}c l}
+\toprule
+Simbolo / parola & Rappresentazione in bit (UTF-8) \\
+\midrule
+'A'      & 01000001 \\
+'z'      & 01111010 \\
+'è'      & 11000011\ 10101000 \\
+'€'      & 11100010\ 10000010\ 10101100 \\
+\midrule
+"casa"   & 01100011\ 01100001\ 01110011\ 01100001 \\
+"città"  & 01100011\ 01101001\ 01110100\ 01110100\ 11000011\ 10100000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Si osserva che:
 \begin{itemize}
-  \item \code{'A'} → 1 byte;
-  \item \code{'è'} → tipicamente 2 byte in UTF-8;
-  \item un'emoji richiede invece più byte.
+  \item i caratteri ASCII semplici (come \code{'A'} e \code{'z'}) occupano 1 solo byte;
+  \item caratteri accentati come \code{'è'} richiedono più spazio;
+  \item simboli come \code{'€'} utilizzano ancora più byte;
+  \item due parole apparentemente simili, come \code{"casa"} e \code{"città"}, occupano quantità di memoria diverse a causa delle lettere accentate.
 \end{itemize}
 
-Questa codifica risulta oggi estremamente diffusa, poiché permette di combinare compattezza per il testo semplice e flessibilità per simboli complessi.
+% --- INIZIO RISPOSTA: Come fa il computer a sapere quanti byte leggere in UTF-8 ---
+\subsubsection*{Come fa il computer a sapere quanti byte leggere?}
+
+Se UTF-8 usa da 1 a 4 byte per carattere, \textbf{come fa il computer a capire quanti byte fanno parte di ciascun carattere}? Non ci sono virgole o spazi tra un carattere e l'altro nel flusso di byte. L'idea è che \textbf{i primi bit del primo byte} di ogni carattere contengono un ``segnale'' che indica quanto è lungo il carattere. 
+
+\subsubsection*{Esempio}
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}c l}
+\toprule
+Simbolo & Rappresentazione in byte \\
+\midrule
+'A'   & 01000001 \\
+'è'   & 11000011\ 10101000 \\
+'€'   & 11100010\ 10000010\ 10101100 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Si osserva che:
+\begin{itemize}
+  \item quando il carattere occupa \textbf{un solo byte}, il primo bit è 0 (\code{'A'});
+  \item quando il carattere occupa \textbf{2 byte}, i primi 2 bit sono 1 (\code{'è'});
+  \item quando il carattere occupa \textbf{3 byte}, i primi 3 bit sono 1 (\code{'è'});
+  \item i byte che seguono un carattere più lungo (secondo, terzo o quarto byte) iniziano sempre con 1. Questo bit prende il nome di \textbf{bit di continuazione}, perchè segnala al computer che \textbf{non} si tratta dell'inizio di un nuovo carattere, ma della continuazione del precedente. 
+\end{itemize}
+
+In questo modo, leggendo i byte uno dopo l'altro e osservando i primi bit, il computer riesce a capire automaticamente quanti byte deve usare per ricostruire ogni carattere.
+
+
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
