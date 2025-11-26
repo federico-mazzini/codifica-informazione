@@ -17,6 +17,7 @@ out/
 *.vrb
 *.bbl
 *.blg
+*.pdf
 
 # roba di macOS
 .DS_Store
