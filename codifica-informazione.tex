@@ -90,21 +90,19 @@ Il significato dipende quindi dal \textbf{contesto} e dalle \textbf{regole di in
 
 \subsection{Rappresentazione}
 
-La \textbf{rappresentazione} riguarda il modo in cui un'informazione viene codificata. La stessa informazione può avere rappresentazioni differenti.
+La \textbf{rappresentazione} riguarda il modo in cui un'informazione viene codificata. La stessa informazione può avere rappresentazioni differenti. Ad esempio, il numero quarantadue può essere rappresentato come \code{42} in decimale, 42 sassolini su un piano, \code{101010} in binario.
 
-Esempi:
+In un computer qualsiasi cosa (numeri, testo, audio, video) viene sempre e solo rappresentata tramite una sequenza di bit (0 e 1). Questo costituisce il punto di partenza per tutto il resto.
+
+\subsection{Perché serve una rappresentazione digitale (e binaria)}
+
+I dispositivi elettronici lavorano con segnali elettrici. Per rendere la lettura di questi segnali più semplice e ridurre gli errori, è utile distinguere soltanto se il segnale è "spento" oppure "acceso".
+
+Per questo, nella progettazione dei calcolatori, si scelgono solo due stati possibili:
 \begin{itemize}
-  \item Il numero quarantadue può essere rappresentato come \code{42} in decimale, \code{101010} in binario, \code{2A} in esadecimale.
-  \item Una nota musicale può essere rappresentata come simbolo sul pentagramma, come frequenza in Hz, come sequenza di campioni digitali.
+  \item stato spento \textrightarrow{} lo rappresentiamo con 0;
+  \item stato acceso \textrightarrow{} lo rappresentiamo con 1.
 \end{itemize}
-
-Nel calcolatore ogni rappresentazione deve essere ricondotta a una sequenza di bit. Questo costituisce il punto di partenza per tutto il resto.
-
-\subsection{Perché serve una rappresentazione digitale}
-
-I dispositivi elettronici lavorano con segnali elettrici che assumono stati distinti (ad esempio, presenza o assenza di tensione). Risulta naturale sfruttare due soli stati logici e rappresentarli con i simboli 0 e 1. 
-
-Tutta l'informatica digitale si basa su questa scelta: due stati ben separati sono più affidabili da distinguere fisicamente rispetto a molti stati intermedi. Da qui nasce la rappresentazione binaria.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bit, byte e quantità di informazione}
@@ -129,10 +127,33 @@ Multipli più comuni:
   \item 1 MB (megabyte) = 1024 KB
   \item 1 GB (gigabyte) = 1024 MB
   \item 1 TB (terabyte) = 1024 GB
+  \item 1 PB (petabyte) = 1024 TB
 \end{itemize}
 
 \subsubsection*{Perchè proprio 1024?}
 L'uso di 1024 anziché 1000 è dovuto alla natura binaria dei calcolatori: 1024= $2^{10}$.
+
+\subsubsection*{Alcuni numeri}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{10cm}r}
+\toprule
+Esempio & Dimensione indicativa \\
+\midrule
+Breve messaggio WhatsApp (solo testo) & $\sim 1$--$2$ KB \\
+Canzone in formato MP3 & $\sim 3$--$10$ MB \\
+Foto scattata con uno smartphone & $\sim 3$--$8$ MB \\
+La stessa foto caricata su Instagram & $\sim 200$--$800$ KB \\
+Foto ad altissima risoluzione & $\sim 50$--$100$ MB \\
+DNA di una persona (genoma umano completo, come sequenza di basi) & $\sim 1$--$2$ GB \\
+Videogioco moderno (FIFA, COD, GTA) & $\sim 100$ GB \\
+Tutte le canzoni su Spotify (stima) & $\sim 500$--$1500$ TB \\
+Dati prodotti dagli esperimenti del CERN in un anno & $\sim 10$ PB \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
 
 \subsection{Numero di stati rappresentabili}
 
