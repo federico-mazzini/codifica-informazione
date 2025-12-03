@@ -1,0 +1,77 @@
+\documentclass[11pt]{exam}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+
+\begin{document}
+
+
+
+\section*{Decifratore di Codici}
+
+In questo esercizio ogni lettera dell'alfabeto viene rappresentata dal suo numero corrispondente (A=1, B=2, ..., Z=26, spazio vuoto=0).  
+Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero di bit necessari. Ricostruire la frase segreta a partire dai codici binari forniti.
+
+\subsection*{Messaggio da decifrare}
+
+\begin{center}
+\begin{tabular}{c}
+01001101 \\
+01101111 \\
+01101111 \\
+01101110 \\
+00000000 \\
+01010010 \\
+01101001 \\
+01110110 \\
+01100101 \\
+01110010 \\
+\end{tabular}
+\end{center}
+
+\section*{Domande}
+\begin{questions}
+
+\question In un sistema di numerazione posizionale in base 7, indicare il massimo valore rappresentabile con 3 cifre (sempre in base 7). Quanto vale in base 10?
+
+\question Che numero decimale rappresenta il numero binario 11111111? NON utilizzare il metodo di conversione visto in classe.
+
+\question Quanti valori distinti è possibile rappresentare con 5 bit?
+
+\question Nel sistema binario, qual è il valore del bit più significativo in un numero di 6 bit?
+
+\question Rappresentare il numero $25_{10}$ in binario utilizzando esattamente 8 bit.
+
+\question Un numero scritto in base 4 è $3210_4$. Converti il numero in base 10 mostrando i pesi delle cifre.
+
+\question Se hai un numero binario e inverti tutti i bit $(0 \rightarrow 1, 1 \rightarrow 0)$, cosa succede al suo valore? Fornisci un esempio breve.
+
+
+\end{questions}
+
+\subsection*{Codifica delle immagini}
+
+
+Gli esercizi seguenti permettono di applicare in modo concreto i concetti di risoluzione, pixel e profondità di colore.
+
+\begin{questions}
+
+    \question Una piccola icona ha dimensione {100 $\times$ 100} pixel.  
+    \begin{parts}
+        \part Quanti pixel totali contiene?
+        \part Se è in bianco e nero (1 bit per pixel), quanti byte servono per memorizzarla?
+        \part Se è a 24 bit per pixel, quanti byte servono?
+    \end{parts}
+
+    \question Considerando un'immagine Full HD, con risoluzione {1920 $\times$ 1080} pixel
+    \begin{parts}
+        \part Quanti pixel totali contiene l'immagine?
+        \part Se l'immagine è in bianco e nero (1 bit per pixel), quanti byte sono necessari per memorizzarla?
+        \part Se l'immagine è a colori con profondità di colore di 24 bit per pixel (modello RGB, 8 bit per ogni canale di colore), quanti byte sono necessari per rappresentare l'immagine? A quanti megabyte circa corrisponde questa dimensione?
+    \end{parts}
+\end{questions}
+
+\end{document}

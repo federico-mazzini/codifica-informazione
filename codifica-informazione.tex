@@ -57,22 +57,19 @@
 \section{Informazione, dato e rappresentazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nel contesto dell'informatica tutto ruota intorno a tre concetti fondamentali:
+Per comprendere il significato di ''codifica dell'informazione'' è utile chiarire alcuni concetti fondamentali:
 \begin{itemize}
   \item \textbf{dato}
   \item \textbf{informazione}
   \item \textbf{rappresentazione}
 \end{itemize}
 
-Questi termini vengono spesso usati in modo intuitivo. Risulta quindi utile fissare una distinzione chiara.
-
 \subsection{Dato}
 
-Per \textbf{dato} si intende un elemento grezzo, non ancora interpretato. Un numero scritto su un foglio, una sequenza di simboli, una misura in forma numerica costituiscono dati.
-
-Un esempio:
+Per \textbf{dato} si intende un elemento grezzo, non ancora interpretato. Un numero scritto su un foglio, una sequenza di simboli, una misura in forma numerica.
+Esempio:
 \begin{itemize}
-  \item La scritta \code{42} rappresenta un dato. Da sola, non indica se si parla di una temperatura, di un'età, di un punteggio o di un codice.
+  \item La scritta \code{42} rappresenta un dato. Letta così, da sola, non è possibile capire se si parla di una temperatura, di un'età, di un punteggio o di un codice.
 \end{itemize}
 
 \subsection{Informazione}
@@ -852,33 +849,31 @@ In questo modo, leggendo i byte uno dopo l'altro e osservando i primi bit, il co
 
 \subsection{Immagini raster}
 
-Le immagini digitali di uso comune (fotografie, screenshot, immagini mostrate su schermo) sono generalmente rappresentate in formato \textbf{raster}.
-
-Un'immagine raster è composta da una griglia regolare di \textbf{pixel}, ovvero i più piccoli elementi visivi che la costituiscono. Ogni pixel contiene un'informazione relativa al colore.
+Le immagini digitali di uso comune (fotografie, screenshot, immagini mostrate su schermo) sono generalmente rappresentate come una griglia regolare di \textbf{pixel}, ovvero i più piccoli elementi visivi che la costituiscono. Ogni pixel contiene un'informazione relativa al colore.
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{images/raster-graphic.jpg}
 
-\emph{Ingrandimento di un'immagine raster con evidenza della griglia di pixel.}
+\emph{Ingrandimento di un'immagine con evidenza della griglia di pixel.}
 \end{center}
 
 Quando un'immagine raster viene ingrandita oltre una certa soglia, la struttura a pixel diventa visibile, producendo l'effetto ``sgranato''.
 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/raster-strawberry.jpeg}
+\end{center}
+
 \subsection{Risoluzione}
 
-La \textbf{risoluzione} indica il numero di pixel presenti in orizzontale e verticale. Determina il livello di dettaglio dell'immagine.
-
+La \textbf{risoluzione di un'immagine} indica il numero di pixel presenti in orizzontale e verticale. Determina il livello di dettaglio dell'immagine. \\
 Esempi comuni:
 \begin{itemize}
   \item 800×600 pixel → bassa definizione
   \item 1920×1080 pixel → Full HD
   \item 3840×2160 pixel → 4K
 \end{itemize}
+Più è alta la risoluzione, maggiore è il numero di pixel e quindi il dettaglio dell'immagine. 
 
-\begin{center}
-\includegraphics[width=0.8\textwidth]{images/raster-strawberry.jpeg}
-
-\end{center}
 
 \subsection{Profondità di colore}
 
@@ -888,13 +883,85 @@ La \textbf{profondità di colore} indica quanti bit vengono utilizzati per rappr
   \item 8 bit → 256 livelli di grigio
   \item 24 bit → RGB, oltre 16 milioni di colori
 \end{itemize}
-
 Il numero di colori rappresentabili è dato dal valore: $2^n$
 
 \begin{center}
 \includegraphics[width=0.55\textwidth]{images/bit-depth-example.png}
-
 \end{center}
+
+\subsection*{Un esempio intuitivo: immagini in bianco e nero}
+
+Per rendere più concreto il legame tra bit e immagini, si può immaginare una piccola figura in bianco e nero come una griglia colorata di bianco o nero. 
+
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_bianconero.png}
+\end{center}
+
+Ogni casella (pixel) può essere solo di due colori (ad esempio bianco o nero) e può quindi essere rappresentata da un singolo bit:
+\begin{itemize}
+  \item 0 \textrightarrow{} pixel bianco;
+  \item 1 \textrightarrow{} pixel nero.
+\end{itemize}
+
+E' possibile quindi identificare l'immagine come una sequenza di bit, in cui ogni bit rappresenta il colore di un pixel nella griglia.
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_bianconero_con_bit.png}
+\end{center}
+
+Possiamo quindi codificare l'immagine come una sequenza di bit, anche senza la griglia, esattamente come avviene all'interno del nostro computer. Ogni cifra della sequenza indica il colore di un pixel nella griglia: la prima riga di bit rappresenta la prima riga di pixel dell'immagine, la seconda riga di bit rappresenta la seconda riga di pixel, e così via.
+Ad esempio, una semplice immagine in bianco e nero potrebbe essere codificata così:
+\begin{center}
+$000000 \quad 010010 \quad 010010 \quad 000000 \quad 011110 \quad 000000$
+\end{center}
+
+\subsection*{Immagini con più colori}
+Quando si passa da immagini in bianco e nero a immagini con più colori, non basta più 1 bit per pixel. Ad esempio, con 2 bit per pixel si possono rappresentare 4 colori diversi. Un possibile schema potrebbe essere:
+
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/4_colori_b_n_g_b.png}
+\end{center}
+
+
+
+La seguente immagine
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_colorata.png}
+\end{center}
+
+Viene codificata utilizzando, per ogni pixel, 2 bit. 
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_colorata_con_bit.png}
+\end{center}
+
+\begin{center}
+$101010101010 \quad 100010100010 \quad 101110101110 \quad 101010101010 \quad 100101010110 \quad 101010101010$
+\end{center}
+
+
+Si nota come già utilizzando 4 colori, il numero di bit sia raddoppiato rispetto all'immagine precedente in bianco e nero.
+
+Nei dispositivi moderni, però, non ci si ferma certo a 4 colori. Per rappresentare fotografie e immagini sugli schermi si utilizzano in genere \textbf{24 bit per ogni pixel}, cioè \textbf{3 byte}. Il colore di ogni pixel viene descritto combinando tre componenti: rosso, verde e blu (modello \textbf{RGB}), ognuna con 8 bit a disposizione. Con 8 bit si hanno
+\[
+2^8 = 256
+\]
+possibili intensità per ciascun colore di base. Mettendo insieme le tre componenti si ottengono:
+\[
+256 \times 256 \times 256 = 16\,777\,216
+\]
+colori diversi (circa \textbf{16 milioni} di colori). Rispetto alle semplici immagini in bianco e nero, la quantità di bit necessari per rappresentare un'immagine realistica cresce molto, ma in cambio si possono ottenere sfumature e dettagli molto più naturali.
+
+
+\subsubsection*{L'importanza del contesto}
+Perché il computer possa ricostruire correttamente l'immagine, non basta la sequenza di bit: servono anche alcune \textbf{informazioni aggiuntive} (chiamate metadati), come ad esempio:
+\begin{itemize}
+  \item la \textbf{risoluzione} dell'immagine (larghezza e altezza in pixel);
+  \item la \textbf{profondità di colore} (quanti bit vengono usati per rappresentare ogni pixel).
+\end{itemize}
+
 
 \subsection{Immagini vettoriali}
 
