@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{array}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -35,9 +36,9 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 \section*{Domande}
 \begin{questions}
 
-\question In un sistema di numerazione posizionale in base 7, indicare il massimo valore rappresentabile con 3 cifre (sempre in base 7). Quanto vale in base 10?
+\question In un sistema di numerazione posizionale in base 7, indicare il massimo valore rappresentabile con 3 cifre (sempre in base 7). Quanto vale lo stesso numero in base 10?
 
-\question Che numero decimale rappresenta il numero binario 11111111? NON utilizzare il metodo di conversione visto in classe.
+\question Che numero decimale rappresenta il numero binario 11111111? N.B. non serve utilizzare il metodo di conversione visto in classe.
 
 \question Quanti valori distinti è possibile rappresentare con 5 bit?
 
@@ -45,14 +46,39 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 
 \question Rappresentare il numero $25_{10}$ in binario utilizzando esattamente 8 bit.
 
+\question Rappresentare il numero $72_{10}$ in binario utilizzando esattamente 8 bit.
+
+\question Qual è il minor numero di bit necessari per rappresentare il numero 4356?
+
 \question Un numero scritto in base 4 è $3210_4$. Converti il numero in base 10 mostrando i pesi delle cifre.
-
-\question Se hai un numero binario e inverti tutti i bit $(0 \rightarrow 1, 1 \rightarrow 0)$, cosa succede al suo valore? Fornisci un esempio breve.
-
 
 \end{questions}
 
-\subsection*{Codifica delle immagini}
+\section*{Messaggio segreto in bianco e nero}
+
+Dati i seguenti numeri, convertirli in binario e riportarli su una griglia 6 x 9, colorando quando le caselle con bit = 1. 
+\begin{center}
+\begin{tabular}{c}
+198 \\
+297 \\
+260 \\
+258 \\
+297 \\
+198 \\
+\end{tabular}
+\end{center}
+
+Che cosa appare sul foglio?
+
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_bianconero_con_bit.png}
+
+\emph{Esempio di colorazione di una griglia 6 x 6}
+\end{center}
+
+
+\section*{Codifica delle immagini}
 
 
 Gli esercizi seguenti permettono di applicare in modo concreto i concetti di risoluzione, pixel e profondità di colore.
