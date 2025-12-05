@@ -309,7 +309,6 @@ Il sistema esadecimale utilizza base 16. Ciò significa che vengono impiegati 16
   \item le cifre decimali da 0 a 9;
   \item le lettere maiuscole da A a F.
 \end{itemize}
-
 Le lettere rappresentano i valori decimali da 10 a 15, come mostrato in tabella:
 
 \begin{center}
@@ -327,18 +326,54 @@ F & 15 \\
 \end{tabular}
 \end{center}
 
-Un numero esadecimale viene talvolta scritto con un prefisso (ad esempio \code{0x2A}) per distinguerlo da un numero decimale.
+\subsubsection*{Esempi di numeri esadecimali}
 
-\subsection{Collegamento con il binario}
+Per familiarizzare con questa scrittura, ecco alcuni esempi di numeri esadecimali con la loro corrispondenza in decimale e binario:
 
-La base 16 risulta particolarmente comoda in ambito informatico per il legame diretto con la base 2:
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Esadecimale & Decimale & Binario \\
+\midrule
+0 & 0 & 0000 \\
+9 & 9 & 1001 \\
+A & 10 & 1010 \\
+F & 15 & 1111 \\
+1F & 31 & 0001\ 1111 \\
+2A & 42 & 0010\ 1010 \\
+7F & 127 & 0111\ 1111 \\
+FF & 255 & 1111\ 1111 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Come si nota, più cifre esadecimali permettono di rappresentare numeri più grandi in modo molto più compatto rispetto al binario.
+
+
+
+\subsubsection*{Prefisso 0x}
+Quando si scrivono numeri in esadecimale, si usa spesso il prefisso \code{0x} per dichiarare e non lasciare dubbi sulla codifica del numero. Ad esempio \code{0x2A} indica il numero esadecimale 2A.
+
+Il prefisso \code{0x} serve quindi solamente a ricordare che il numero va letto in base 16 e non in base 10.
+
+\subsection{Perchè utilizzare l'esadecimale}
+
+La scrittura binaria di numeri lunghi risulta poco leggibile e difficile da controllare a colpo d'occhio. L'esadecimale offre:
+
+\begin{itemize}
+  \item una \textbf{forma più compatta}: riduce la lunghezza delle sequenze rispetto al binario;
+  \item una \textbf{maggiore leggibilità} per esseri umani in contesti tecnici, senza avere a che fare con lunghe sequenze di 0 e 1;
+  \item una \textbf{relazione diretta con il binario}: la conversione avviene per gruppi di 4 bit, senza calcoli complessi.
+\end{itemize}
+
+\subsubsection*{Collegamento con il binario}
+La base 16, quindi l'utilizzo di 16 simboli, risulta particolarmente comoda in ambito informatico per il legame diretto con la base 2 e quindi con il sistema binario. Il motivo è che con 4 bit è possibile rappresentare esattamente 16 valori distinti:
 \[
 2^4 = 16
 \]
-
 Questa uguaglianza implica che \textbf{ogni gruppo di 4 bit} può essere rappresentato con una \textbf{singola cifra esadecimale} e viceversa.
 
-Tabella di corrispondenza tra tutti i blocchi possibili di 4 bit e le cifre esadecimali:
+\subsubsection*{Tabella di corrispondenza tra ogni cifra esadecimale e 4 bit}
 
 \begin{center}
 \begin{tabular}{cc}
@@ -365,20 +400,15 @@ Binario & Esadecimale \\
 \end{tabular}
 \end{center}
 
-Questa corrispondenza rende l'esadecimale una sorta di ``abbreviazione leggibile'' del binario.
-
+\newpage
 \subsection{Conversione binario -- esadecimale}
-
-Grazie alla corrispondenza per gruppi di 4 bit, la conversione risulta diretta e meccanica.
-
-\subsubsection*{Da binario a esadecimale}
 
 Procedura generale:
 \begin{enumerate}
-  \item si parte dal numero binario;
-  \item si raggruppano i bit in blocchi da 4 a partire da destra (se necessario si aggiungono zeri a sinistra nell'ultimo blocco);
-  \item per ciascun blocco di 4 bit si individua la cifra esadecimale corrispondente nella tabella;
-  \item si scrivono le cifre esadecimali nello stesso ordine.
+  \item Raggruppare i bit in blocchi da 4 a partire da destra (se necessario si aggiungono zeri a sinistra nel primo blocco);
+  \item Per ciascun blocco di 4 bit individuare il valore decimale corrispondente;
+  \item Convertire il valore decimale in cifra esadecimale (0-9, A-F);
+  \item Scrivere le cifre esadecimali nello stesso ordine.
 \end{enumerate}
 
 \paragraph{Esempio 1}
@@ -428,13 +458,13 @@ Quindi:
 (1100101)_2 = (65)_{16}
 \]
 
-\subsubsection*{Da esadecimale a binario}
+\subsection{Conversione esadecimale -- binario}
 
-Procedura generale:
+Procedura generale, per ogni cifra esadecimale:
 \begin{enumerate}
-  \item si considera ciascuna cifra esadecimale;
-  \item per ogni cifra si sostituisce il corrispondente blocco di 4 bit;
-  \item si concatenano i blocchi ottenuti.
+  \item Ottenere il numero decimale corrispondente;
+  \item Trasformare il numero decimale ottenuto in un blocco di 4 bit, tramite il metodo delle divisioni successive o la tabella di corrispondenza;
+  \item Concatenare i blocchi ottenuti.
 \end{enumerate}
 
 \paragraph{Esempio 3}
@@ -465,183 +495,144 @@ Quindi:
 (A2)_{16} = (1010\ 0010)_2 = (10100010)_2
 \]
 
-\subsection{Perché usare l'esadecimale}
 
-La scrittura binaria di numeri lunghi risulta poco leggibile e difficile da controllare a colpo d'occhio. L'esadecimale offre:
-
-\begin{itemize}
-  \item una \textbf{forma più compatta}: riduce la lunghezza delle sequenze rispetto al binario;
-  \item una \textbf{relazione diretta con il binario}: la conversione avviene per gruppi di 4 bit, senza calcoli complessi;
-  \item una \textbf{maggiore leggibilità} per esseri umani in contesti tecnici (programmazione di basso livello, analisi della memoria, debug).
-\end{itemize}
-
-In molti strumenti di sviluppo, valori che la macchina tratta in binario vengono presentati in esadecimale perché risulta un compromesso efficace tra ``vicinanza all'hardware'' e comprensione umana.
-\subsection{Perché si usa l'esadecimale}
-
-Le sequenze di bit risultano poco leggibili quando diventano lunghe. L'esadecimale permette di riscrivere gruppi di bit in una forma più compatta e comprensibile, mantenendo comunque una corrispondenza esatta con il binario.
-
-In pratica, i bit vengono raggruppati a gruppi di 4 e ogni gruppo viene sostituito con una cifra esadecimale. In questo modo una lunga sequenza di 0 e 1 si trasforma in pochi simboli più facili da interpretare.
-
-\paragraph{Esempio}
-
-Si consideri il numero binario:
-\[
-(101010)_2
-\]
-
-Poiché il numero contiene 6 bit, si aggiungono zeri a sinistra fino a ottenere un multiplo di 4:
-\[
-(101010)_2 = (0010\ 1010)_2
-\]
-
-Si convertono i blocchi separatamente:
-\[
-0010_2 = 2_{16}, \quad 1010_2 = A_{16}
-\]
-
-Si ottiene quindi:
-\[
-(101010)_2 = (2A)_{16}
-\]
-
-Questo esempio mostra come una sequenza binaria venga trasformata in una forma più compatta e leggibile. L'esadecimale consente quindi di ``tradurre'' il linguaggio dei bit in una notazione più adatta alla lettura umana, pur rimanendo rigorosamente legata alla rappresentazione interna del calcolatore.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Logica booleana}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Decisioni sì/no}
-
-Nella vita quotidiana le decisioni spesso dipendono da condizioni che possono essere considerate vere o false.
-
-Esempi:
-\begin{itemize}
-  \item ``se piove, allora si usa l'ombrello'';
-  \item ``se l'età è maggiore o uguale a 18, allora è consentito votare'';
-  \item ``se la batteria è scarica, allora si ricarica il dispositivo''.
-\end{itemize}
-
-Ogni affermazione del tipo ``condizione → azione'' può essere formalizzata con la logica booleana.
-
-\subsection{Variabile booleana}
-
-Una \textbf{variabile booleana} può assumere solo due valori:
-\begin{itemize}
-  \item vero (spesso indicato con 1);
-  \item falso (spesso indicato con 0).
-\end{itemize}
-
-Questo modello è perfettamente compatibile con la rappresentazione mediante bit.
-
-\subsection{Operatori logici fondamentali}
-
-Gli operatori logici di base sono:
-\begin{description}
-  \item[NOT] (negazione): inverte il valore di verità.
-  \item[AND] (congiunzione): è vero solo se entrambe le condizioni sono vere.
-  \item[OR] (disgiunzione inclusiva): è vero se almeno una delle condizioni è vera.
-\end{description}
-
-\subsection{Tabelle di verità}
-Le tabelle di verità descrivono il comportamento di un operatore logico rispetto a tutti i possibili input.
-
-\bigskip
-
-\noindent\textbf{Operatore NOT (negazione)}
-
-L'operatore NOT inverte il valore logico della variabile: il vero diventa falso e il falso diventa vero.
-
-\[
-\begin{array}{c|c}
-A & \text{NOT } A \\
-\hline
-0 & 1 \\
-1 & 0
-\end{array}
-\]
-
-\bigskip
-
-\noindent\textbf{Operatore AND (congiunzione)}
-
-L'operatore AND restituisce vero solo quando entrambe le variabili assumono valore vero.
-
-\[
-\begin{array}{c|c|c}
-A & B & A \land B \\
-\hline
-0 & 0 & 0 \\
-0 & 1 & 0 \\
-1 & 0 & 0 \\
-1 & 1 & 1
-\end{array}
-\]
-
-\bigskip
-
-\noindent\textbf{Operatore OR (disgiunzione)}
-
-L'operatore OR restituisce vero quando almeno una delle due variabili è vera.
-
-\[
-\begin{array}{c|c|c}
-A & B & A \lor B \\
-\hline
-0 & 0 & 0 \\
-0 & 1 & 1 \\
-1 & 0 & 1 \\
-1 & 1 & 1
-\end{array}
-\]
-
-\subsection{Proprietà degli operatori logici}
-
-Gli operatori AND e OR possiedono diverse proprietà utili nella semplificazione delle espressioni booleane.
-
-\paragraph{Proprietà commutativa}
-
-Per AND e OR vale:
-\[
-A \land B = B \land A \\
-A \lor B = B \lor A
-\]
-
-\paragraph{Proprietà associativa}
-
-L'ordine di raggruppamento non modifica il risultato:
-\[
-(A \land B) \land C = A \land (B \land C) \\
-(A \lor B) \lor C = A \lor (B \lor C)
-\]
-
-\paragraph{Proprietà distributiva}
-
-AND e OR si distribuiscono in modo analogo a moltiplicazione e somma:
-\[
-A \land (B \lor C) = (A \land B) \lor (A \land C) \\
-A \lor (B \land C) = (A \lor B) \land (A \lor C)
-\]
-
-\subsection{Leggi di De Morgan}
-
-Le leggi di De Morgan permettono di trasformare la negazione di una congiunzione in una disgiunzione di negazioni e viceversa:
-\[
-\neg(A \land B) = (\neg A) \lor (\neg B) \\
-\neg(A \lor B) = (\neg A) \land (\neg B)
-\]
-
-Queste trasformazioni risultano fondamentali nella progettazione di circuiti logici e nella semplificazione di condizioni nei programmi.
-
-\subsection{Espressioni booleane}
-
-Un'espressione booleana combina variabili booleane e operatori logici.
-
-Esempio:
-\[
-(A \land B) \lor (\neg C)
-\]
-
-Un'espressione di questo tipo può rappresentare una regola decisionale, una condizione di controllo o il comportamento di un circuito.
+%\section{Logica booleana}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\subsection{Decisioni sì/no}
+%
+%Nella vita quotidiana le decisioni spesso dipendono da condizioni che %possono essere considerate vere o false.
+%
+%Esempi:
+%\begin{itemize}
+%  \item ``se piove, allora si usa l'ombrello'';
+%  \item ``se l'età è maggiore o uguale a 18, allora è consentito %votare'';
+%  \item ``se la batteria è scarica, allora si ricarica il %dispositivo''.
+%\end{itemize}
+%
+%Ogni affermazione del tipo ``condizione → azione'' può essere %formalizzata con la logica booleana.
+%
+%\subsection{Variabile booleana}
+%
+%Una \textbf{variabile booleana} può assumere solo due valori:
+%\begin{itemize}
+%  \item vero (spesso indicato con 1);
+%  \item falso (spesso indicato con 0).
+%\end{itemize}
+%
+%Questo modello è perfettamente compatibile con la rappresentazione %mediante bit.
+%
+%\subsection{Operatori logici fondamentali}
+%
+%Gli operatori logici di base sono:
+%\begin{description}
+%  \item[NOT] (negazione): inverte il valore di verità.
+%  \item[AND] (congiunzione): è vero solo se entrambe le condizioni %sono vere.
+%  \item[OR] (disgiunzione inclusiva): è vero se almeno una delle %condizioni è vera.
+%\end{description}
+%
+%\subsection{Tabelle di verità}
+%Le tabelle di verità descrivono il comportamento di un operatore %logico rispetto a tutti i possibili input.
+%
+%\bigskip
+%
+%\noindent\textbf{Operatore NOT (negazione)}
+%
+%L'operatore NOT inverte il valore logico della variabile: il vero %diventa falso e il falso diventa vero.
+%
+%\[
+%\begin{array}{c|c}
+%A & \text{NOT } A \\
+%\hline
+%0 & 1 \\
+%1 & 0
+%\end{array}
+%\]
+%
+%\bigskip
+%
+%\noindent\textbf{Operatore AND (congiunzione)}
+%
+%L'operatore AND restituisce vero solo quando entrambe le variabili %assumono valore vero.
+%
+%\[
+%\begin{array}{c|c|c}
+%A & B & A \land B \\
+%\hline
+%0 & 0 & 0 \\
+%0 & 1 & 0 \\
+%1 & 0 & 0 \\
+%1 & 1 & 1
+%\end{array}
+%\]
+%
+%\bigskip
+%
+%\noindent\textbf{Operatore OR (disgiunzione)}
+%
+%L'operatore OR restituisce vero quando almeno una delle due variabili %è vera.
+%
+%\[
+%\begin{array}{c|c|c}
+%A & B & A \lor B \\
+%\hline
+%0 & 0 & 0 \\
+%0 & 1 & 1 \\
+%1 & 0 & 1 \\
+%1 & 1 & 1
+%\end{array}
+%\]
+%
+%\subsection{Proprietà degli operatori logici}
+%
+%Gli operatori AND e OR possiedono diverse proprietà utili nella %semplificazione delle espressioni booleane.
+%
+%\paragraph{Proprietà commutativa}
+%
+%Per AND e OR vale:
+%\[
+%A \land B = B \land A \\
+%A \lor B = B \lor A
+%\]
+%
+%\paragraph{Proprietà associativa}
+%
+%L'ordine di raggruppamento non modifica il risultato:
+%\[
+%(A \land B) \land C = A \land (B \land C) \\
+%(A \lor B) \lor C = A \lor (B \lor C)
+%\]
+%
+%\paragraph{Proprietà distributiva}
+%
+%AND e OR si distribuiscono in modo analogo a moltiplicazione e somma:
+%\[
+%A \land (B \lor C) = (A \land B) \lor (A \land C) \\
+%A \lor (B \land C) = (A \lor B) \land (A \lor C)
+%\]
+%
+%\subsection{Leggi di De Morgan}
+%
+%Le leggi di De Morgan permettono di trasformare la negazione di una %congiunzione in una disgiunzione di negazioni e viceversa:
+%\[
+%\neg(A \land B) = (\neg A) \lor (\neg B) \\
+%\neg(A \lor B) = (\neg A) \land (\neg B)
+%\]
+%
+%Queste trasformazioni risultano fondamentali nella progettazione di %circuiti logici e nella semplificazione di condizioni nei programmi.
+%
+%\subsection{Espressioni booleane}
+%
+%Un'espressione booleana combina variabili booleane e operatori logici.
+%
+%Esempio:
+%\[
+%(A \land B) \lor (\neg C)
+%\]
+%
+%Un'espressione di questo tipo può rappresentare una regola %decisionale, una condizione di controllo o il comportamento di un %circuito.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
