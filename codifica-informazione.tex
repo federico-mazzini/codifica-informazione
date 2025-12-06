@@ -200,23 +200,24 @@ Per comprendere il sistema binario risulta utile definire il funzionamento del s
 
 \subsection{Sistema decimale}
 
-Il sistema decimale si basa sulla \textbf{base 10}. Ciò significa che:
+Il sistema decimale si basa su 10 simboli distinti. Il valore di una cifra dipende quindi sia dal simbolo ma soprattutto dalla sua posizione.
+Volendo formalizzare, nel sistema di numerazione decimale:
 \begin{itemize}
-  \item sono disponibili 10 \textbf{simboli}: da 0 a 9;
-  \item ogni \textbf{posizione} rappresenta una \textbf{potenza} di 10.
+  \item sono disponibili 10 \textbf{simboli}: $[0,1,2,3,4,5,6,7,8,9]$
+  \item ogni \textbf{posizione} rappresenta una differente \textbf{potenza} di 10.
 \end{itemize}
-Esempio:
+Ad esempio, il numero $472$ può essere inteso come:
 \[
 472 = 400 + 70 + 2 = 4 \cdot 10^2 + 7 \cdot 10^1 + 2 \cdot 10^0
 \]
-Il valore di una cifra dipende quindi sia dal simbolo, sia dalla posizione.
+
 
 \subsection{Definizione di sistema posizionale}
-
-Un sistema di numerazione posizionale è caratterizzato da:
+Il sistema decimale non è l'unico sistema di numerazione posizionale, è solamente l'unico che utilizziamo quotidianamente. A seconda del numero di simboli disponibili (chiamato base) è possibile definire sistemi di numerazione posizionali differenti.\\\\
+Più in generale, un sistema di numerazione posizionale è caratterizzato da:
 \begin{itemize}
   \item una base $b$ (numero di simboli disponibili);
-  \item un insieme di cifre da 0 a $b-1$;
+  \item un insieme di $b$ simboli differenti;
   \item il valore di ciascuna cifra è dato dalla cifra stessa moltiplicata per una potenza della base.
 \end{itemize}
 Un numero generico in base $b$ può essere scritto come:
@@ -235,25 +236,89 @@ Il sistema binario utilizza base 2. Le cifre possibili sono solo due:
 0 e 1
 \end{center}
 
+Come per il sistema decimale, anche nel sistema binario il valore di una cifra dipende:
+\begin{itemize}
+  \item dal \textbf{simbolo} (0 oppure 1);
+  \item dalla sua \textbf{posizione} (più a destra o più a sinistra).
+\end{itemize}
+
 Ogni posizione rappresenta una potenza di 2:
 \[
 \dots, 2^4, 2^3, 2^2, 2^1, 2^0
 \]
-Esempio di interpretazione:
-\[
-(1011)_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = 8 + 0 + 2 + 1 = 11_{10}
-\]
+
+\subsubsection*{Tutte le possibilità con pochi bit}
+
+Per vedere concretamente come funziona il sistema binario, è utile elencare tutte le combinazioni possibili con un certo numero di bit e il loro valore decimale.
+
+\paragraph{Con 1 bit}
+
+Con un solo bit abbiamo soltanto 2 configurazioni possibili:
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Bit & Valore decimale \\
+\midrule
+0 & 0 \\
+1 & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Con 2 bit}
+
+Con 2 bit le configurazioni possibili diventano \(2^2 = 4\).
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Bit (binario) & Valore decimale \\
+\midrule
+00 & 0 \\
+01 & 1 \\
+10 & 2 \\
+11 & 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Con 3 bit}
+
+Con 3 bit le configurazioni possibili sono \(2^3 = 8\). Possiamo elencarle in ordine:
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Bit (binario) & Valore decimale \\
+\midrule
+000 & 0 \\
+001 & 1 \\
+010 & 2 \\
+011 & 3 \\
+100 & 4 \\
+101 & 5 \\
+110 & 6 \\
+111 & 7 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Si nota che:
+\begin{itemize}
+  \item ogni volta che aggiungiamo un bit in più, il numero di combinazioni raddoppia;
+  \item con 1 bit rappresentiamo i numeri da 0 a 1;
+  \item con 2 bit rappresentiamo i numeri da 0 a 3;
+  \item con 3 bit rappresentiamo i numeri da 0 a 7.
+\end{itemize}
+
+In generale, con \(n\) bit possiamo rappresentare \(2^n\) configurazioni diverse, cioè tutti i numeri interi da 0 fino a \(2^n - 1\).
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conversioni tra decimale e binario}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Conversione da binario a decimale}
+\subsection{Conversione binario -- decimale}
 
-La conversione da binario a decimale segue direttamente la definizione di sistema posizionale.
-
-Procedura:
+La conversione da binario a decimale segue direttamente la definizione di sistema posizionale.\\\\
+\textbf{Procedura}
 \begin{enumerate}
   \item si scrive il numero binario separando le cifre;
   \item si associa a ogni cifra la potenza di 2 corrispondente (partendo da destra con $2^0$);
@@ -261,19 +326,42 @@ Procedura:
   \item si sommano i risultati.
 \end{enumerate}
 
-Esempio:
+\paragraph{Esempio 1} Conversione di \(1101_2\) in decimale.
 \[
 \begin{aligned}
-(11010)_2 &= 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
-          &= 16 + 8 + 0 + 2 + 0 = 26_{10}
+1101_2 &= 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 \\
+       &= 8 + 4 + 0 + 1 = 13_{10}
 \end{aligned}
 \]
 
-\subsection{Conversione da decimale a binario: metodo delle divisioni successive}
+\paragraph{Esempio 2} Conversione di \(1010_2\) in decimale.
+\[
+\begin{aligned}
+1010_2 &= 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 8 + 0 + 2 + 0 = 10_{10}
+\end{aligned}
+\]
 
-Il metodo più comune per la conversione da decimale a binario si basa su divisioni successive per 2.
+\paragraph{Esempio 3} Conversione di \(100000_2\) in decimale.
+\[
+\begin{aligned}
+100000_2 &= 1 \cdot 2^5 + 0 \cdot 2^4 + 0 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 \\
+         &= 32 + 0 + 0 + 0 + 0 + 0 = 32_{10}
+\end{aligned}
+\]
 
-Procedura generale:
+\paragraph{Esempio 4} Conversione di \(11111111_2\) in decimale.
+\[
+\begin{aligned}
+11111111_2 &= 1 \cdot 2^7 + 1 \cdot 2^6 + 1 \cdot 2^5 + 1 \cdot 2^4 + 1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 \\
+           &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255_{10}
+\end{aligned}
+\]
+
+\newpage
+\subsection{Conversione decimale -- binario}
+Il metodo più comune per la conversione da decimale a binario si basa su \textbf{divisioni successive} per 2.\\
+\textbf{Procedura}
 \begin{enumerate}
   \item si divide il numero decimale per 2;
   \item si registra il resto (0 o 1);
@@ -281,7 +369,9 @@ Procedura generale:
   \item si ripete fino a ottenere quoziente 0;
   \item si leggono i resti dal basso verso l'alto.
 \end{enumerate}
-Esempio: conversione di 19 in binario.
+
+\paragraph{Esempio 1}
+Conversione di $19_{10}$ in binario.
 \[
 \begin{aligned}
 19 : 2 &= 9 \quad \text{e resto } 1 \\
@@ -291,10 +381,44 @@ Esempio: conversione di 19 in binario.
 1 : 2  &= 0 \quad \text{e resto } 1
 \end{aligned}
 \]
-
 Lettura dei resti dal basso verso l'alto:
 \[
 19_{10} = (10011)_2
+\]
+
+\paragraph{Esempio 2}
+Conversione di $25_{10}$ in binario.
+\[
+\begin{aligned}
+25 : 2 &= 12 \quad \text{e resto } 1 \\
+12 : 2 &= 6 \quad \text{e resto } 0 \\
+6 : 2  &= 3 \quad \text{e resto } 0 \\
+3 : 2  &= 1 \quad \text{e resto } 1 \\
+1 : 2  &= 0 \quad \text{e resto } 1
+\end{aligned}
+\]
+Lettura dei resti dal basso verso l'alto:
+\[
+25_{10} = (11001)_2
+\]
+
+\paragraph{Esempio 3}
+Conversione di $255_{10}$ in binario.
+\[
+\begin{aligned}
+255 : 2 &= 127 \quad \text{e resto } 1 \\
+127 : 2 &= 63  \quad \text{e resto } 1 \\
+63 : 2  &= 31  \quad \text{e resto } 1 \\
+31 : 2  &= 15  \quad \text{e resto } 1 \\
+15 : 2  &= 7   \quad \text{e resto } 1 \\
+7 : 2   &= 3   \quad \text{e resto } 1 \\
+3 : 2   &= 1   \quad \text{e resto } 1 \\
+1 : 2   &= 0   \quad \text{e resto } 1
+\end{aligned}
+\]
+Lettura dei resti dal basso verso l'alto:
+\[
+255_{10} = (11111111)_2
 \]
 
 
@@ -458,6 +582,52 @@ Quindi:
 (1100101)_2 = (65)_{16}
 \]
 
+\paragraph{Esempio 3}
+
+Conversione di \((111100001010)_2\) in esadecimale.
+
+\[
+111100001010_2
+\]
+
+Raggruppamento in blocchi da 4 bit:
+\[
+1111 \quad 0000 \quad 1010
+\]
+
+Da tabella:
+\[
+1111_2 = F_{16}, \quad 0000_2 = 0_{16}, \quad 1010_2 = A_{16}
+\]
+
+Quindi:
+\[
+(111100001010)_2 = (F0A)_{16}
+\]
+
+\paragraph{Esempio 4}
+
+Conversione di \((10000000)_2\) in esadecimale.
+
+\[
+10000000_2
+\]
+
+Raggruppamento in blocchi da 4 bit:
+\[
+1000 \quad 0000
+\]
+
+Da tabella:
+\[
+1000_2 = 8_{16}, \quad 0000_2 = 0_{16}
+\]
+
+Quindi:
+\[
+(10000000)_2 = (80)_{16}
+\]
+
 \subsection{Conversione esadecimale -- binario}
 
 Procedura generale, per ogni cifra esadecimale:
@@ -467,7 +637,7 @@ Procedura generale, per ogni cifra esadecimale:
   \item Concatenare i blocchi ottenuti.
 \end{enumerate}
 
-\paragraph{Esempio 3}
+\paragraph{Esempio 1}
 
 Conversione di \((3F)_{16}\) in binario.
 
@@ -481,7 +651,7 @@ Quindi:
 (3F)_{16} = (0011\ 1111)_2 = (00111111)_2
 \]
 
-\paragraph{Esempio 4}
+\paragraph{Esempio 2}
 
 Conversione di \((A2)_{16}\) in binario.
 
@@ -493,6 +663,34 @@ Conversione di \((A2)_{16}\) in binario.
 Quindi:
 \[
 (A2)_{16} = (1010\ 0010)_2 = (10100010)_2
+\]
+
+\paragraph{Esempio 3}
+
+Conversione di \((7B)_{16}\) in binario.
+
+\begin{itemize}
+  \item \(7_{16} \rightarrow 0111_2\)
+  \item \(B_{16} \rightarrow 1011_2\)
+\end{itemize}
+
+Quindi:
+\[
+(7B)_{16} = (0111\ 1011)_2 = (01111011)_2
+\]
+
+\paragraph{Esempio 4}
+
+Conversione di \((FF)_{16}\) in binario.
+
+\begin{itemize}
+  \item \(F_{16} \rightarrow 1111_2\)
+  \item \(F_{16} \rightarrow 1111_2\)
+\end{itemize}
+
+Quindi:
+\[
+(FF)_{16} = (1111\ 1111)_2 = (11111111)_2
 \]
 
 
