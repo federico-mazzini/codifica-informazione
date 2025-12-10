@@ -548,9 +548,17 @@ Raggruppamento in blocchi da 4 bit partendo da destra:
 1011 \quad 0110
 \]
 
-Da tabella:
+Calcolo del valore decimale di ciascun blocco:
+\begin{align*}
+1011_2 &= 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 \\
+       &= 8 + 0 + 2 + 1 = 11_{10} \\
+0110_2 &= 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 0 + 4 + 2 + 0 = 6_{10}
+\end{align*}
+
+Conversione in cifre esadecimali:
 \[
-1011_2 = B_{16}, \quad 0110_2 = 6_{16}
+11_{10} = B_{16}, \quad 6_{10} = 6_{16}
 \]
 
 Quindi:
@@ -572,9 +580,17 @@ Blocchi da 4 bit:
 0110 \quad 0101
 \]
 
-Da tabella:
+Calcolo del valore decimale di ciascun blocco:
+\begin{align*}
+0110_2 &= 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 0 + 4 + 2 + 0 = 6_{10} \\
+0101_2 &= 0 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 \\
+       &= 0 + 4 + 0 + 1 = 5_{10}
+\end{align*}
+
+Conversione in cifre esadecimali:
 \[
-0110_2 = 6_{16}, \quad 0101_2 = 5_{16}
+6_{10} = 6_{16}, \quad 5_{10} = 5_{16}
 \]
 
 Quindi:
@@ -595,9 +611,19 @@ Raggruppamento in blocchi da 4 bit:
 1111 \quad 0000 \quad 1010
 \]
 
-Da tabella:
+Calcolo del valore decimale di ciascun blocco:
+\begin{align*}
+1111_2 &= 1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 \\
+       &= 8 + 4 + 2 + 1 = 15_{10} \\
+0000_2 &= 0 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 0 + 0 + 0 + 0 = 0_{10} \\
+1010_2 &= 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 8 + 0 + 2 + 0 = 10_{10}
+\end{align*}
+
+Conversione in cifre esadecimali:
 \[
-1111_2 = F_{16}, \quad 0000_2 = 0_{16}, \quad 1010_2 = A_{16}
+15_{10} = F_{16}, \quad 0_{10} = 0_{16}, \quad 10_{10} = A_{16}
 \]
 
 Quindi:
@@ -618,9 +644,17 @@ Raggruppamento in blocchi da 4 bit:
 1000 \quad 0000
 \]
 
-Da tabella:
+Calcolo del valore decimale di ciascun blocco:
+\begin{align*}
+1000_2 &= 1 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 8 + 0 + 0 + 0 = 8_{10} \\
+0000_2 &= 0 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 \\
+       &= 0 + 0 + 0 + 0 = 0_{10}
+\end{align*}
+
+Conversione in cifre esadecimali:
 \[
-1000_2 = 8_{16}, \quad 0000_2 = 0_{16}
+8_{10} = 8_{16}, \quad 0_{10} = 0_{16}
 \]
 
 Quindi:
@@ -637,16 +671,37 @@ Procedura generale, per ogni cifra esadecimale:
   \item Concatenare i blocchi ottenuti.
 \end{enumerate}
 
+% --- SEZIONE MIGLIORATA: Conversione esadecimale → binario con calcoli intermedi ---
 \paragraph{Esempio 1}
 
 Conversione di \((3F)_{16}\) in binario.
 
 \begin{itemize}
-  \item \(3_{16} \rightarrow 0011_2\)
-  \item \(F_{16} \rightarrow 1111_2\)
+  \item Prima cifra: \(3_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(3_{16} = 3_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        3 : 2 = 1 \quad \text{resto } 1 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Scrivendo i resti dal basso verso l'alto: \(11_2\), che diventa \(0011_2\) (aggiungendo due zeri a sinistra per ottenere 4 bit).
+    \end{itemize}
+  \item Seconda cifra: \(F_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(F_{16} = 15_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        15 : 2 = 7 \quad \text{resto } 1 \\
+        7 : 2 = 3 \quad \text{resto } 1 \\
+        3 : 2 = 1 \quad \text{resto } 1 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(1111_2\)
+    \end{itemize}
 \end{itemize}
 
-Quindi:
+Concatenando i blocchi:
 \[
 (3F)_{16} = (0011\ 1111)_2 = (00111111)_2
 \]
@@ -656,11 +711,31 @@ Quindi:
 Conversione di \((A2)_{16}\) in binario.
 
 \begin{itemize}
-  \item \(A_{16} \rightarrow 1010_2\)
-  \item \(2_{16} \rightarrow 0010_2\)
+  \item Prima cifra: \(A_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(A_{16} = 10_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        10 : 2 = 5 \quad \text{resto } 0 \\
+        5 : 2 = 2 \quad \text{resto } 1 \\
+        2 : 2 = 1 \quad \text{resto } 0 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(1010_2\)
+    \end{itemize}
+  \item Seconda cifra: \(2_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(2_{16} = 2_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        2 : 2 = 1 \quad \text{resto } 0 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(10_2\), che diventa \(0010_2\) (aggiungendo due zeri a sinistra).
+    \end{itemize}
 \end{itemize}
 
-Quindi:
+Concatenando i blocchi:
 \[
 (A2)_{16} = (1010\ 0010)_2 = (10100010)_2
 \]
@@ -670,11 +745,32 @@ Quindi:
 Conversione di \((7B)_{16}\) in binario.
 
 \begin{itemize}
-  \item \(7_{16} \rightarrow 0111_2\)
-  \item \(B_{16} \rightarrow 1011_2\)
+  \item Prima cifra: \(7_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(7_{16} = 7_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        7 : 2 = 3 \quad \text{resto } 1 \\
+        3 : 2 = 1 \quad \text{resto } 1 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(111_2\), che diventa \(0111_2\) (aggiungendo uno zero a sinistra).
+    \end{itemize}
+  \item Seconda cifra: \(B_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(B_{16} = 11_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        11 : 2 = 5 \quad \text{resto } 1 \\
+        5 : 2 = 2 \quad \text{resto } 1 \\
+        2 : 2 = 1 \quad \text{resto } 0 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(1011_2\)
+    \end{itemize}
 \end{itemize}
 
-Quindi:
+Concatenando i blocchi:
 \[
 (7B)_{16} = (0111\ 1011)_2 = (01111011)_2
 \]
@@ -684,11 +780,26 @@ Quindi:
 Conversione di \((FF)_{16}\) in binario.
 
 \begin{itemize}
-  \item \(F_{16} \rightarrow 1111_2\)
-  \item \(F_{16} \rightarrow 1111_2\)
+  \item Prima cifra: \(F_{16}\)
+    \begin{itemize}
+      \item Valore decimale: \(F_{16} = 15_{10}\)
+      \item Conversione in binario a 4 bit:
+        \begin{align*}
+        15 : 2 = 7 \quad \text{resto } 1 \\
+        7 : 2 = 3 \quad \text{resto } 1 \\
+        3 : 2 = 1 \quad \text{resto } 1 \\
+        1 : 2 = 0 \quad \text{resto } 1 \\
+        \end{align*}
+        Resti dal basso verso l'alto: \(1111_2\)
+    \end{itemize}
+  \item Seconda cifra: \(F_{16}\) (stesso calcolo)
+    \begin{itemize}
+      \item Valore decimale: \(F_{16} = 15_{10}\)
+      \item Conversione in binario a 4 bit: \(1111_2\)
+    \end{itemize}
 \end{itemize}
 
-Quindi:
+Concatenando i blocchi:
 \[
 (FF)_{16} = (1111\ 1111)_2 = (11111111)_2
 \]
