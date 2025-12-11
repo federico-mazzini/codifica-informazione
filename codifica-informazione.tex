@@ -433,13 +433,23 @@ Il sistema esadecimale utilizza base 16. Ciò significa che vengono impiegati 16
   \item le cifre decimali da 0 a 9;
   \item le lettere maiuscole da A a F.
 \end{itemize}
-Le lettere rappresentano i valori decimali da 10 a 15, come mostrato in tabella:
+Le lettere rappresentano i valori decimali da 10 a 15, come mostrato nella tabella rappresentante tutti i simboli del sistema di numerazione esadecimale:
 
 \begin{center}
 \begin{tabular}{cc}
 \toprule
 Simbolo & Valore decimale \\
 \midrule
+0 & 0 \\
+1 & 1 \\
+2 & 2 \\
+3 & 3 \\
+4 & 4 \\
+5 & 5 \\
+6 & 6 \\
+7 & 7 \\
+8 & 8 \\
+9 & 9 \\
 A & 10 \\
 B & 11 \\
 C & 12 \\
@@ -525,11 +535,101 @@ Binario & Esadecimale \\
 \end{center}
 
 \newpage
+\subsection{Conversione esadecimale -- decimale}
+
+La conversione da esadecimale a decimale si basa sulla natura dei sistemi posizionali, per cui il peso di una cifra dipende dalla sua posizione.
+
+\paragraph{Procedura}
+\begin{enumerate}
+  \item Scrivere il numero esadecimale separando le cifre.
+  \item Sostituire ciascuna cifra con il suo valore decimale (da 0 a 15).
+  \item Moltiplicare ogni valore per la potenza di 16 corrispondente alla posizione (partendo da destra con $16^0$).
+  \item Sommare tutti i risultati.
+\end{enumerate}
+
+\paragraph{Esempio 1} Conversione di \(2A_{16}\) in decimale.
+\begin{align*}
+2A_{16} &= 2 \cdot 16^1 + A \cdot 16^0 \\
+        &= 2 \cdot 16 + 10 \cdot 1 \\
+        &= 32 + 10 = 42_{10}
+\end{align*}
+
+\paragraph{Esempio 2} Conversione di \(3F_{16}\) in decimale.
+\begin{align*}
+3F_{16} &= 3 \cdot 16^1 + F \cdot 16^0 \\
+        &= 3 \cdot 16 + 15 \cdot 1 \\
+        &= 48 + 15 = 63_{10}
+\end{align*}
+
+\paragraph{Esempio 3} Conversione di \(1C4_{16}\) in decimale.
+\begin{align*}
+1C4_{16} &= 1 \cdot 16^2 + C \cdot 16^1 + 4 \cdot 16^0 \\
+         &= 1 \cdot 256 + 12 \cdot 16 + 4 \cdot 1 \\
+         &= 256 + 192 + 4 = 452_{10}
+\end{align*}
+
+\newpage
+\subsection{Conversione decimale -- esadecimale}
+
+La conversione da decimale a esadecimale si effettua con il metodo delle \textbf{divisioni successive per 16}.
+
+\paragraph{Procedura}
+\begin{enumerate}
+  \item Dividere il numero decimale per 16.
+  \item Registrare il resto (da 0 a 15, che può corrispondere a una cifra esadecimale).
+  \item Sostituire il numero con il quoziente.
+  \item Ripetere finché il quoziente diventa 0.
+  \item Leggere i resti dal basso verso l'alto e tradurli in cifre esadecimali (0–9, A–F).
+\end{enumerate}
+
+\paragraph{Esempio 1}
+Conversione di \(42_{10}\) in esadecimale.
+\[
+\begin{aligned}
+42 : 16 &= 2 \quad \text{resto } 10 \ (A) \\
+2 : 16  &= 0 \quad \text{resto } 2
+\end{aligned}
+\]
+Lettura dei resti dal basso verso l'alto:
+\[
+42_{10} = (2A)_{16}
+\]
+
+\paragraph{Esempio 2}
+Conversione di \(255_{10}\) in esadecimale.
+\[
+\begin{aligned}
+255 : 16 &= 15 \quad \text{resto } 15 \ (F) \\
+15 : 16  &= 0 \quad \text{resto } 15 \ (F)
+\end{aligned}
+\]
+Lettura dei resti dal basso verso l'alto:
+\[
+255_{10} = (FF)_{16}
+\]
+
+\paragraph{Esempio 3}
+Conversione di \(452_{10}\) in esadecimale.
+\[
+\begin{aligned}
+452 : 16 &= 28 \quad \text{resto } 4 \\
+28 : 16  &= 1 \quad \text{resto } 12 \ (C) \\
+1 : 16   &= 0 \quad \text{resto } 1
+\end{aligned}
+\]
+Lettura dei resti dal basso verso l'alto:
+\[
+452_{10} = (1C4)_{16}
+\]
+
+\newpage
 \subsection{Conversione binario -- esadecimale}
 
-Procedura generale:
+Le conversioni binario -- esadecimale e viceversa partono sempre dall'assunto che 4 bit rappresentano esattamente una cifra esadecimale.
+
+\paragraph{Procedura}
 \begin{enumerate}
-  \item Raggruppare i bit in blocchi da 4 a partire da destra (se necessario si aggiungono zeri a sinistra nel primo blocco);
+  \item Raggruppare i bit in blocchi da 4 a partire da destra (perchè 4 bit = 16 combinazioni esattamente come 1 cifra esadecimale). Se necessario si aggiungono zeri a sinistra nel primo blocco;
   \item Per ciascun blocco di 4 bit individuare il valore decimale corrispondente;
   \item Convertire il valore decimale in cifra esadecimale (0-9, A-F);
   \item Scrivere le cifre esadecimali nello stesso ordine.
@@ -663,8 +763,10 @@ Quindi:
 \]
 
 \subsection{Conversione esadecimale -- binario}
+Le conversioni binario -- esadecimale e viceversa partono sempre dall'assunto che 4 bit rappresentano esattamente una cifra esadecimale.
 
-Procedura generale, per ogni cifra esadecimale:
+\paragraph{Procedura}
+Per ogni cifra esadecimale:
 \begin{enumerate}
   \item Ottenere il numero decimale corrispondente;
   \item Trasformare il numero decimale ottenuto in un blocco di 4 bit, tramite il metodo delle divisioni successive o la tabella di corrispondenza;
