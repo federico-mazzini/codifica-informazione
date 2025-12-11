@@ -21,9 +21,7 @@
 
 
 \begin{document}
-% ==================================================
-% COPERTINA DISPENSA – VERSIONE AVANZATA
-% ==================================================
+
 \begin{titlepage}
 \centering
 
@@ -33,7 +31,7 @@
 \rule{0.85\textwidth}{0.8pt}\\[0.9cm]
 
 {\huge\bfseries Codifica dell'informazione}\\[0.4cm]
-{\Large Il sistema binario ed esadecimale}\\[0.6cm]
+{\Large Sistemi di numerazione binario ed esadecimale.\\[0.2cm]Codifica dei caratteri e delle immagini.}\\[0.6cm]
 
 \rule{0.85\textwidth}{0.8pt}\\[2.5cm]
 
@@ -229,7 +227,8 @@ e interpretato come:
  a_n b^n + a_{n-1} b^{n-1} + \dots + a_1 b^1 + a_0 b^0
 \]
 
-\subsection{Sistema binario}
+\newpage
+\section{Sistema binario}
 
 Il sistema binario utilizza base 2. Le cifre possibili sono solo due:
 \begin{center}
@@ -482,13 +481,6 @@ FF & 255 & 1111\ 1111 \\
 \end{center}
 
 Come si nota, più cifre esadecimali permettono di rappresentare numeri più grandi in modo molto più compatto rispetto al binario.
-
-
-
-\subsubsection*{Prefisso 0x}
-Quando si scrivono numeri in esadecimale, si usa spesso il prefisso \code{0x} per dichiarare e non lasciare dubbi sulla codifica del numero. Ad esempio \code{0x2A} indica il numero esadecimale 2A.
-
-Il prefisso \code{0x} serve quindi solamente a ricordare che il numero va letto in base 16 e non in base 10.
 
 \subsection{Perchè utilizzare l'esadecimale}
 
@@ -1378,5 +1370,156 @@ Grazie a questa caratteristica, l'ingrandimento non comporta perdita di qualità
 \end{center}
 
 Un comportamento analogo si osserva in molti file PDF: durante lo zoom, testo e linee restano perfettamente definiti perché descritti mediante elementi vettoriali. Se il PDF contiene invece immagini raster, l’ingrandimento evidenzia la struttura a pixel e produce sgranature visibili.
+
+
+
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\begin{center}
+\vspace*{\fill}
+{\LARGE \textbf{ESERCIZI}}
+\vspace*{\fill}
+\end{center}
+\newpage
+
+\section*{Binario}
+\subsection*{Decifratore di Codici}
+
+In questo esercizio ogni lettera dell'alfabeto viene rappresentata dal suo numero corrispondente (A=1, B=2, ..., Z=26, spazio vuoto=0).  
+Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero di bit necessari. Ricostruire la frase segreta a partire dai codici binari forniti.
+
+\emph{Messaggio da decifrare}
+
+\begin{center}
+\begin{tabular}{c}
+01001101 \\
+01101111 \\
+01101111 \\
+01101110 \\
+00000000 \\
+01010010 \\
+01101001 \\
+01110110 \\
+01100101 \\
+01110010 \\
+\end{tabular}
+\end{center}
+
+\subsection*{Domande}
+\begin{enumerate}
+
+\item In un sistema di numerazione posizionale in base 7, indicare il massimo valore rappresentabile con 3 cifre (sempre in base 7). Quanto vale lo stesso numero in base 10?
+
+\item Che numero decimale rappresenta il numero binario 11111111? N.B. non serve utilizzare il metodo di conversione visto in classe.
+
+\item Quanti valori distinti è possibile rappresentare con 5 bit?
+
+\item Nel sistema binario, qual è il valore del bit più significativo in un numero di 6 bit?
+
+\item Rappresentare il numero $25_{10}$ in binario utilizzando esattamente 8 bit.
+
+\item Rappresentare il numero $72_{10}$ in binario utilizzando esattamente 8 bit.
+
+\item Qual è il minor numero di bit necessari per rappresentare il numero 4356?
+
+\item Un numero scritto in base 4 è $3210_4$. Converti il numero in base 10 mostrando i pesi delle cifre.
+
+\end{enumerate}
+
+\subsection*{Messaggio segreto in bianco e nero}
+
+Dati i seguenti numeri, convertirli in binario e riportarli su una griglia 6 x 9, colorando quando le caselle con bit = 1. 
+\begin{center}
+\begin{tabular}{c}
+198 \\
+297 \\
+260 \\
+258 \\
+297 \\
+198 \\
+\end{tabular}
+\end{center}
+
+Che cosa appare sul foglio?
+
+
+\begin{center}
+\includegraphics[width=0.1\textwidth]{images/imm_bianconero_con_bit.png}
+
+\emph{Esempio di colorazione di una griglia 6 x 6}
+\end{center}
+
+
+
+\newpage
+\section*{Esadecimale}
+
+\subsubsection*{Domande}
+
+\begin{enumerate}
+\item In codifica esadecimale, scrivere i numeri successivi ai seguenti:
+\begin{enumerate}
+    \item $F$
+    \item $1A$
+    \item $2F$
+    \item $3C$
+    \item $AF$ 
+\end{enumerate}
+
+\item Quanti bit sono necessari per rappresentare i valori possibili di una singola cifra esadecimale?
+
+\item Quante cifre esadecimali servono per rappresentare tutti i valori possibili di un byte (8 bit)?
+
+\item Quanti valori distinti si possono rappresentare con 1 cifra esadecimale? E con 2 cifre? E con 3 cifre?
+
+\item Qual è il minor numero di cifre esadecimali necessarie per rappresentare il numero decimale $10000_{10}$? 
+\end{enumerate}
+
+\subsubsection*{Conversioni}
+
+\begin{enumerate}
+
+\item Dato il numero esadecimale $1A3$, convertirlo in decimale mostrando i calcoli con i pesi delle cifre.
+
+\item Dato il numero esadecimale $CD3$, convertirlo in decimale passando per il binario.\\Quindi $esadecimale \rightarrow binario \rightarrow decimale$.
+
+\item Dato il numero decimale $255_{10}$, convertirlo in esadecimale passando per il binario.\\Quindi $decimale \rightarrow binario \rightarrow esadecimale$.
+
+ 
+\item Dato il numero esadecimale $CF79E_{16}$, convertirlo in binario utilizzando la tabella di corrispondenza (pagina 10 dispense). Quanti byte servono per rappresentarlo?.
+
+\item Dato il numero binario 11111100010101000, convertirlo in esadecimale utilizzando la tabella di corrispondenza (pagina 10 dispense).
+
+\end{enumerate}
+
+
+
+\newpage
+\section*{Codifica delle immagini}
+
+
+Gli esercizi seguenti permettono di applicare in modo concreto i concetti di risoluzione, pixel e profondità di colore.
+
+\begin{enumerate}
+
+    \item Una piccola icona ha dimensione {100 $\times$ 100} pixel.  
+    \begin{enumerate}
+        \item Quanti pixel totali contiene?
+        \item Se è in bianco e nero (1 bit per pixel), quanti byte servono per memorizzarla?
+        \item Se è a 24 bit per pixel, quanti byte servono?
+    \end{enumerate}
+
+    \item Considerando un'immagine Full HD, con risoluzione {1920 $\times$ 1080} pixel
+    \begin{enumerate}
+        \item Quanti pixel totali contiene l'immagine?
+        \item Se l'immagine è in bianco e nero (1 bit per pixel), quanti byte sono necessari per memorizzarla?
+        \item Se l'immagine è a colori con profondità di colore di 24 bit per pixel (modello RGB, 8 bit per ogni canale di colore), quanti byte sono necessari per rappresentare l'immagine? A quanti megabyte circa corrisponde questa dimensione?
+    \end{enumerate}
+\end{enumerate}
+
+
 
 \end{document}
