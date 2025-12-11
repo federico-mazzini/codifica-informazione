@@ -1,6 +1,7 @@
-### Dispense informatica - Codifica dell'informazione
+# Dispense informatica
+## Codifica dell'informazione
 
-**Argomenti trattati**
+#### Argomenti trattati
 - Dato, informazione e rappresentazione
 - Introduzione ai sistemi di numerazione (posizionali vs additivi/sottrattivi)
 - Formalizzazione sistemi di numerazione posizionali
@@ -9,10 +10,10 @@
 - Codifica dei caratteri
 - Codifica delle immagini
 
-**Argomenti non trattati**
+#### Argomenti non trattati
 - Operazioni tra numeri binari (somma, sottrazione, addizione, divisione)
 - Codifica numeri in virgola mobile
 - Complemento a 2
 
-**Da valutare inserimento**
+#### Da valutare inserimento
 - Cenni di logica booleana
