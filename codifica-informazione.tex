@@ -1381,12 +1381,19 @@ Un comportamento analogo si osserva in molti file PDF: durante lo zoom, testo e 
 {\LARGE \textbf{Domande ed esercizi}}
 \vspace*{\fill}
 \end{center}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
 \newpage
 
-\section*{Binario}
-\subsection*{Decifratore di Codici}
+\section{Binario}
+\subsection{Decifratore di Codici}
 
-In questo esercizio ogni lettera dell'alfabeto viene rappresentata dal suo numero corrispondente (A=1, B=2, ..., Z=26, spazio vuoto=0).  
+\begin{enumerate}
+  \item In questo esercizio ogni lettera dell'alfabeto viene rappresentata dal suo numero corrispondente (A=1, B=2, ..., Z=26, spazio vuoto=0).  
 Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero di bit necessari. Ricostruire la frase segreta a partire dai codici binari forniti.
 
 \emph{Messaggio da decifrare}
@@ -1405,9 +1412,11 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 01110010 \\
 \end{tabular}
 \end{center}
+\end{enumerate}
 
-\subsection*{Domande}
+\subsection{Domande}
 \begin{enumerate}
+\setcounter{enumi}{1}
 
 \item In un sistema di numerazione posizionale in base 7, indicare il massimo valore rappresentabile con 3 cifre (sempre in base 7). Quanto vale lo stesso numero in base 10?
 
@@ -1421,15 +1430,27 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 
 \item Rappresentare il numero $72_{10}$ in binario utilizzando esattamente 8 bit.
 
-\item Qual è il minor numero di bit necessari per rappresentare il numero 4356?
+\item Qual è il minor numero di bit necessari per rappresentare il numero 4676?
 
-\item Un numero scritto in base 4 è $3210_4$. Converti il numero in base 10 mostrando i pesi delle cifre.
+\item Un numero scritto in base 5 è $34210_5$. Converti il numero in base 10 mostrando i pesi delle cifre.
+
+\item Confronta le seguenti quantità di memoria, indicando quale è più grande, motivando la risposta.
+\begin{enumerate}
+    \item 1 GB vs. 1 MB
+    \item 1 KB vs. 1 GB
+    \item 1 TB vs. 1 MB
+    \item 2 GB vs. 2048 MB
+    \item 1.5 GB vs. 1200 MB
+    \item 10000 byte vs. 9 KB
 
 \end{enumerate}
+\end{enumerate}
 
-\subsection*{Messaggio segreto in bianco e nero}
+\subsection{Messaggio segreto in bianco e nero}
 
-Dati i seguenti numeri, convertirli in binario e riportarli su una griglia 6 x 9, colorando quando le caselle con bit = 1. 
+\begin{enumerate}
+\setcounter{enumi}{10}
+\item Dati i seguenti numeri, convertirli in binario e riportarli su una griglia 6 x 9, colorando quando le caselle con bit = 1. 
 \begin{center}
 \begin{tabular}{c}
 198 \\
@@ -1450,12 +1471,13 @@ Che cosa appare sul foglio?
 \emph{Esempio di colorazione di una griglia 6 x 6}
 \end{center}
 
+\end{enumerate}
 
 
 \newpage
-\section*{Esadecimale}
+\section{Esadecimale}
 
-\subsubsection*{Domande}
+\subsection{Domande}
 
 \begin{enumerate}
 \item In codifica esadecimale, scrivere i numeri successivi ai seguenti:
@@ -1474,11 +1496,18 @@ Che cosa appare sul foglio?
 \item Quanti valori distinti si possono rappresentare con 1 cifra esadecimale? E con 2 cifre? E con 3 cifre?
 
 \item Qual è il minor numero di cifre esadecimali necessarie per rappresentare il numero decimale $10000_{10}$? 
+
+\item Considerando il numero esadecimale $24FFF97_{16}$:
+\begin{enumerate}
+    \item qual è il minor numero di bit necessari per rappresentarne il valore?
+    \item qual è il minor numero di cifre nel sistema decimale necessario per rappresentarne il valore?
+\end{enumerate}
 \end{enumerate}
 
-\subsubsection*{Conversioni}
-
+\subsection{Conversioni}
+ % riprende dal numero successivo
 \begin{enumerate}
+\setcounter{enumi}{6}
 
 \item Dato il numero esadecimale $1A3$, convertirlo in decimale mostrando i calcoli con i pesi delle cifre.
 
@@ -1486,10 +1515,35 @@ Che cosa appare sul foglio?
 
 \item Dato il numero decimale $255_{10}$, convertirlo in esadecimale passando per il binario.\\Quindi $decimale \rightarrow binario \rightarrow esadecimale$.
 
- 
-\item Dato il numero esadecimale $CF79E_{16}$, convertirlo in binario utilizzando la tabella di corrispondenza (pagina 10 dispense). Quanti byte servono per rappresentarlo?.
 
-\item Dato il numero binario 11111100010101000, convertirlo in esadecimale utilizzando la tabella di corrispondenza (pagina 10 dispense).
+\item Convertire i seguenti numeri esadecimali in decimale.
+\begin{enumerate}
+    \item $173_{16}$
+    \item $347_{16}$
+    \item $3FC8_{16}$
+\end{enumerate}
+
+\item Convertire i seguenti numeri decimali in esadecimale.
+\begin{enumerate}
+    \item $173_{10}$
+    \item $347_{10}$
+    \item $348_{10}$
+\end{enumerate}
+
+\item Convertire i seguenti numeri esadecimali in binario.
+\begin{enumerate}
+    \item $CF79E_{16}$
+    \item $A3F2_{16}$
+    \item $9D4B_{16}$
+\end{enumerate}
+
+
+\item Convertire i seguenti numeri binari in esadecimale.
+\begin{enumerate}
+    \item $11111100010101000_2$
+    \item $11001010011100001101_2$
+    \item $1010111100101101_2$
+\end{enumerate}
 
 \end{enumerate}
 
