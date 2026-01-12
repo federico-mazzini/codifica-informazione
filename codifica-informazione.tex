@@ -1143,30 +1143,30 @@ In codice binario, quindi sul nostro computer, la frase è rappresentata in ques
 Quello che al nostro occhio appare come una sequenza di lettere e spazi, per il calcolatore è solamente una sequenza di segnali elettrici (0 e 1). Anche in questo caso possiamo parlare di \textbf{astrazione}. Nascondiamo i segnali elettrici, nascondiamo i bit e i numeri della tabella ASCII, rimane il livello umano, quello (per noi) semplice da capire e veramente utile.
 
 
-
+\newpage
 \subsection{Unicode}
 
 La codifica ASCII, mette a disposizione 128 possibili caratteri, ma ad oggi, tra lettere accentate, alfabeti diversi (greco, cirillico, arabo, ecc.), simboli matematici, frecce, segni grafici ed emoji, i caratteri da rappresentare sono migliaia.
 
-\textbf{Unicode} nasce per risolvere un problema semplice: i computer non vengono usati solo da persone che scrivono in inglese. L'idea di base di Unicode è simile a quella di ASCII: \textbf{ogni simbolo che può comparire su uno schermo o in un testo digitale riceve un numero}. La vera differenza sta nel \emph{quantitativo} di simboli che si possono rappresentare.
-Nel codice ASCII classico, usando 7 bit, si hanno a disposizione 
-\[
-2^7 = 128 \text{ simboli diversi},
-\] 
-Unicode utilizza numeri più grandi, scritti spesso in \textbf{codice esadecimale} per comodità. Con 5 cifre esadecimali si possono rappresentare fino a
-\[
-16^5 = 1\,048\,576 \text{ simboli diversi},
-\]
-molto di più dei 128 di ASCII :D. 
+\begin{center}
+\includegraphics[width=0.6\textwidth]{images/unicode.png}
 
+\emph{\textit{"Everyone in the world should be able to use their own language on phones and computers."}}
+\end{center}
+
+\textbf{Unicode} nasce per oltrepassare i limiti della codifica ASCII e permettere di utilizzare i computer non solo dalle persone che scrivono in inglese. L'idea alla base di Unicode è simile a quella di ASCII: \textbf{ogni simbolo viene associato a un numero}, con la differenza che Unicode non ha limiti rigidi sul numero di simboli rappresentabili, e viene continuamente tenuto aggiornato.
+
+Esso può essere immaginato come un enorme dizionario di simboli, ognuno associato a un numero chiamato \textbf{code point}. Trattando numeri di più grande entità, si utilizza la \textbf{notazione esadecimale} per comodità. L'ultima versione Unicode è la 17.0 di febbraio 2025, rappresentante $297.334$ simboli diversi
 
 \begin{center}
-\includegraphics[width=1\textwidth]{images/unicode-emoji.png}
+\includegraphics[width=0.6\textwidth]{images/unicode-emoji.png}
 
 \emph{Tabella parziale Unicode rappresentante alcune emoji}
 \end{center}
 
-In sintesi, Unicode definisce un grande ``dizionario'' mondiale dei simboli, molto più ampio di quello offerto da ASCII, in cui a ogni simbolo corrisponde un numero univoco.
+
+
+
 
 Questo dizionario stabilisce \emph{quali} simboli esistono e \emph{quale} numero li rappresenta, ma non specifica ancora \emph{come} questi numeri vengano memorizzati in termini di byte e bit. Per passare dai code point ai bit veri e propri, quindi alla \textbf{rappresentazione pratica} si usano delle regole chiamate \textbf{codifiche}, la più importante è UTF-8.
 
@@ -1180,20 +1180,19 @@ Le sue caratteristiche fondamentali sono:
   \item compatibilità con ASCII: i primi 128 caratteri (quelli ASCII) vengono rappresentati con un singolo byte identico ad ASCII;
   \item caratteri non ASCII (accenti, simboli, emoji) utilizzano 2, 3 o 4 byte.
 \end{itemize}
-La lunghezza variabile di UTF-8 può essere illustrata mostrando la reale rappresentazione in bit di alcuni caratteri e parole:
+
+\subsubsection*{Esempio}
+Di seguito si riporta l'associazione tra alcuni caratteri e i rispettivi code point Unicode. Si nota come UTF-8 rappresenti ciascun carattere con un numero variabile di byte (8 bit ciascuno).
 
 \begin{center}
-\begin{tabular}{>{\ttfamily}c l}
+\begin{tabular}{>{\ttfamily}c l l}
 \toprule
-Simbolo / parola & Rappresentazione in bit (UTF-8) \\
+Carattere & Code point Unicode & UTF-8 (bit) \\
 \midrule
-'A'      & 01000001 \\
-'z'      & 01111010 \\
-'è'      & 11000011\ 10101000 \\
-'€'      & 11100010\ 10000010\ 10101100 \\
-\midrule
-"casa"   & 01100011\ 01100001\ 01110011\ 01100001 \\
-"città"  & 01100011\ 01101001\ 01110100\ 01110100\ 11000011\ 10100000 \\
+'A' & U+0041 & 01000001 \\
+'z' & U+007A & 01111010 \\
+'è' & U+00E8 & 11000011\ 10101000 \\
+'€' & U+20AC & 11100010\ 10000010\ 10101100 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1202,8 +1201,20 @@ Si osserva che:
   \item i caratteri ASCII semplici (come \code{'A'} e \code{'z'}) occupano 1 solo byte;
   \item caratteri accentati come \code{'è'} richiedono più spazio;
   \item simboli come \code{'€'} utilizzano ancora più byte;
-  \item due parole apparentemente simili, come \code{"casa"} e \code{"città"}, occupano quantità di memoria diverse a causa delle lettere accentate.
 \end{itemize}
+Di seguito invece si riportano due parole italiane, una senza caratteri accentati e l'altra con un carattere accentato, per mostrare come la presenza di caratteri speciali influenzi la quantità di memoria occupata.
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}c l}
+\toprule
+Parola & UTF-8 (bit) \\
+\midrule
+"casa"  & 01100011\ 01100001\ 01110011\ 01100001 \\
+"città" & 01100011\ 01101001\ 01110100\ 01110100\ 11000011\ 10100000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
 
 % --- INIZIO RISPOSTA: Come fa il computer a sapere quanti byte leggere in UTF-8 ---
 \subsubsection*{Come fa il computer a sapere quanti byte leggere?}
@@ -1223,15 +1234,123 @@ Simbolo & Rappresentazione in byte \\
 \bottomrule
 \end{tabular}
 \end{center}
-Si osserva che:
+
 \begin{itemize}
   \item quando il carattere occupa \textbf{un solo byte}, il primo bit è 0 (\code{'A'});
   \item quando il carattere occupa \textbf{2 byte}, i primi 2 bit sono 1 (\code{'è'});
   \item quando il carattere occupa \textbf{3 byte}, i primi 3 bit sono 1 (\code{'è'});
   \item i byte che seguono un carattere più lungo (secondo, terzo o quarto byte) iniziano sempre con 1. Questo bit prende il nome di \textbf{bit di continuazione}, perchè segnala al computer che \textbf{non} si tratta dell'inizio di un nuovo carattere, ma della continuazione del precedente. 
 \end{itemize}
+Più formalmente, UTF-8 utilizza dei \textbf{pattern di bit} ben precisi per distinguere
+l’inizio di un carattere dai byte di continuazione:
 
-In questo modo, leggendo i byte uno dopo l'altro e osservando i primi bit, il computer riesce a capire automaticamente quanti byte deve usare per ricostruire ogni carattere.
+\begin{itemize}
+  \item un carattere codificato su \textbf{1 byte} ha la forma:
+  \[
+  0xxxxxxx
+  \]
+  ed è compatibile con la codifica ASCII;
+
+  \item un carattere codificato su \textbf{2 byte} ha la forma:
+  \[
+  110xxxxx\ 10xxxxxx
+  \]
+
+  \item un carattere codificato su \textbf{3 byte} ha la forma:
+  \[
+  1110xxxx\ 10xxxxxx\ 10xxxxxx
+  \]
+
+  \item un carattere codificato su \textbf{4 byte} ha la forma:
+  \[
+  11110xxx\ 10xxxxxx\ 10xxxxxx\ 10xxxxxx
+  \]
+\end{itemize}
+
+I bit iniziali (\texttt{0}, \texttt{110}, \texttt{1110}, \texttt{11110}) permettono al computer di
+riconoscere immediatamente \textbf{quanti byte} compongono il carattere, mentre i byte di
+continuazione iniziano sempre con la sequenza \texttt{10}, che indica che il byte
+\textbf{non rappresenta l’inizio di un nuovo carattere}.
+
+\medskip
+Una volta stabilito \textbf{quanti byte} usare, i simboli \texttt{x} presenti nei pattern UTF-8
+vengono sostituiti con i \textbf{bit del code point Unicode} del carattere.
+
+Il procedimento è il seguente:
+\begin{enumerate}
+  \item si parte dal \textbf{code point} del carattere, espresso in notazione esadecimale;
+  \item il numero viene convertito prima in \textbf{decimale} e poi in \textbf{binario};
+  \item la sequenza di bit ottenuta viene inserita negli spazi \texttt{x}, partendo da destra,
+  rispettando l’ordine dei byte UTF-8.
+\end{enumerate}
+
+\medskip
+\textbf{Esempio: codifica del carattere \code{'è'}}
+
+Il carattere \code{'è'} ha code point Unicode:
+\[
+\texttt{U+00E8}
+\]
+
+Il valore esadecimale \texttt{00E8} corrisponde al numero decimale:
+\[
+\texttt{00E8}_{16} = 232_{10}
+\]
+
+Espresso in binario:
+\[
+232_{10} = 11101000_2
+\]
+
+Poiché il valore rientra nell’intervallo \texttt{0080--07FF}, UTF-8 utilizza \textbf{2 byte},
+con il pattern:
+\[
+110xxxxx\ 10xxxxxx
+\]
+
+I bit del numero binario vengono inseriti negli \texttt{x} partendo dal byte di destra:
+\[
+\underline{110}\,00011\ \underline{10}\,101000
+\]
+
+Si ottiene quindi la rappresentazione finale in UTF-8:
+\[
+11000011\ 10101000
+\]
+
+\medskip
+\textbf{Esempio: codifica del carattere \code{'€'}}
+
+Il carattere \code{'€'} ha code point Unicode:
+\[
+\texttt{U+20AC}
+\]
+
+Conversione in decimale:
+\[
+\texttt{20AC}_{16} = 8364_{10}
+\]
+
+Conversione in binario:
+\[
+8364_{10} = 0010\,0000\,1010\,1100_2
+\]
+
+Poiché il valore rientra nell’intervallo \texttt{0800--FFFF}, UTF-8 utilizza \textbf{3 byte},
+con il pattern:
+\[
+1110xxxx\ 10xxxxxx\ 10xxxxxx
+\]
+
+I bit del code point vengono distribuiti negli \texttt{x}:
+\[
+\underline{1110}\,0010\ \underline{10}\,000010\ \underline{10}\,101100
+\]
+
+La rappresentazione UTF-8 finale è quindi:
+\[
+11100010\ 10000010\ 10101100
+\]
 
 
 
