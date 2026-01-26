@@ -1490,6 +1490,123 @@ Grazie a questa caratteristica, l'ingrandimento non comporta perdita di qualità
 Un comportamento analogo si osserva in molti file PDF: durante lo zoom, testo e linee restano perfettamente definiti perché descritti mediante elementi vettoriali. Se il PDF contiene invece immagini raster, l’ingrandimento evidenzia la struttura a pixel e produce sgranature visibili.
 
 
+\newpage
+\subsection{La fisica dei colori: sintesi sottrattiva e additiva}
+
+\subsubsection*{Il colore nei materiali: sintesi sottrattiva}
+
+Nella stampa e nella pittura i materiali non emettono luce, ma riflettono la luce che li colpisce.
+Il colore si ottiene quindi tramite sintesi sottrattiva, perché i pigmenti assorbono una parte della luce e ne riflettono solo una parte. 
+I \textbf{colori primari} del modello sottrattivo sono: 
+\begin{itemize}
+  \item ciano (C)
+  \item magenta (M)
+  \item giallo (Y).
+\end{itemize}
+Nella pratica vengono spesso indicati in modo semplificato come blu, rosso e giallo.
+
+In questo modello, aggiungendo colori viene assorbita sempre più luce.
+Di conseguenza, combinando più colori si ottengono colori sempre più scuri, fino a tendere al nero.
+
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{images/additive-and-subtractive-colour.png}
+\end{center}
+
+\subsubsection*{Il colore sugli schermi: sintesi additiva}
+
+I dispositivi digitali, come monitor e smartphone, funzionano in modo diverso rispetto alla stampa e alla pittura. Gli schermi \textbf{emettono luce} e non la riflettono. Per questo motivo il colore viene ottenuto tramite \textbf{sintesi additiva}, cioè sommando luce.
+La sintesi additiva si basa su tre colori fondamentali:
+\begin{itemize}
+  \item rosso (R),
+  \item verde (G),
+  \item blu (B).
+\end{itemize}
+
+Combinando questi tre colori con diverse intensità si ottengono tutti gli altri colori.  
+Nella sintesi additiva, aumentando la quantità di luce emessa, il colore risultante tende al \textbf{bianco}.
+
+
+
+\subsection{Pixel e subpixel fisici}
+
+Come visto nella sintesi additiva, il colore sugli schermi si ottiene sommando luce.  
+Questa somma avviene fisicamente all’interno dei \textbf{pixel} che compongono lo schermo.
+
+Sugli schermi digitali (monitor, smartphone, tablet, TV) l'immagine è formata da una griglia di \textbf{pixel}.  
+Ogni pixel non è un elemento indivisibile, ma è composto da tre \textbf{subpixel} luminosi:
+\begin{itemize}
+  \item un subpixel rosso (R),
+  \item un subpixel verde (G),
+  \item un subpixel blu (B).
+\end{itemize}
+
+Nell'immagine sottostante è mostrato l’ingrandimento di due schermi digitali, 
+in cui sono visibili i singoli subpixel rossi, verdi e blu che costituiscono ogni pixel.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/subpixel.png}
+\end{center}
+
+Ogni subpixel può emettere luce con intensità variabile.  
+Il colore finale del pixel dipende dalla quantità di luce emessa da ciascun subpixel.
+
+Ad esempio, se è acceso solo il subpixel rosso e gli altri due sono spenti, il pixel appare rosso.  
+Combinando la luce emessa dai tre subpixel con diverse intensità si ottengono tutti i colori visualizzati sullo schermo.
+
+\subsection{Il modello RGB numerico}
+Dal punto di vista informatico (e quindi delle informazioni che i dispositivi digitali codificano), ogni subpixel RGB di un pixel viene rappresentato tramite un numero intero.  
+Il colore di un pixel è quindi descritto come una \textbf{tripla di numeri} $(R, G, B)$, che indica quanta luce viene emessa dai subpixel rosso, verde e blu.
+
+Nel modello più comune:
+\begin{itemize}
+  \item ogni componente (R, G, B) può assumere valori da 0 a 255;
+  \item sono necessari 8 bit per ciascun colore, perchè con 8 bit sono possibili $2^8 = 256$ \textit{combinazioni};
+  \item un pixel completo viene rappresentato con 24 bit, come visto in precedenza nella sezione relativa alla profondità di colore.
+\end{itemize}
+
+
+\subsubsection*{Codifica esadecimale dei colori}
+
+Spesso i colori RGB vengono spesso scritti in \textbf{notazione esadecimale}.
+
+Essendo che, come visto alle sezioni precedenti 4 bit rappresentano esattamente una cifra esadecimale, per ogni canale R,G, B sono necessari 8 bit (1 byte). La forma generale è quindi la seguente:
+\[
+\#RRGGBB
+\]
+Dove:
+\begin{itemize}
+  \item RR rappresenta il valore del rosso in esadecimale;
+  \item GG rappresenta il valore del verde in esadecimale;
+  \item BB rappresenta il valore del blu in esadecimale.
+\end{itemize}
+
+
+
+\subsubsection*{I selettori di colore}
+
+
+I selettori di colore presenti nei software di grafica e sul web mostrano lo stesso colore in tre forme equivalenti:
+\begin{itemize}
+  \item come colore visivo;
+  \item come tripla RGB;
+  \item come codice esadecimale (HEX).
+\end{itemize}
+
+Sotto alcuni esempi di colori rappresentati in queste tre forme equivalenti.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/col-picker-red.png}
+\end{center}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/col-picker-blue.png}
+\end{center}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/col-picker-green.png}
+\end{center}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/col-picker-azure.png}
+\end{center}
 
 
 \newpage
