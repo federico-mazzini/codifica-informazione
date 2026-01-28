@@ -1782,29 +1782,187 @@ Che cosa appare sul foglio?
 
 \end{enumerate}
 
-
-
 \newpage
-\section*{Codifica delle immagini}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Esercizi -- Codifica dei caratteri e delle immagini}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Gli esercizi seguenti permettono di applicare in modo concreto i concetti di risoluzione, pixel e profondità di colore.
+\subsection{Codifica dei caratteri}
 
 \begin{enumerate}
+  \item Scrivere il codice ASCII decimale e binario (8 bit) dei seguenti caratteri:
+  \begin{itemize}
+    \item \code{'A'}
+    \item \code{'a'}
+    \item \code{'0'}
+    \item spazio
+  \end{itemize}
 
-    \item Una piccola icona ha dimensione {100 $\times$ 100} pixel.  
+  \item Indicare quali delle seguenti affermazioni sono vere e quali false:
+  \begin{enumerate}
+    \item ASCII utilizza 8 bit per ogni carattere.
+    \item Il carattere \code{'a'} ha un codice ASCII maggiore di \code{'A'}.
+    \item UTF-8 è compatibile con ASCII.
+    \item Le emoji possono essere rappresentate in ASCII.
+  \end{enumerate}
+
+  \item Quanti caratteri diversi è possibile rappresentare utilizzando:
+  \begin{enumerate}
+    \item 7 bit;
+    \item 8 bit;
+    \item 16 bit.
+  \end{enumerate}
+
+  \item Convertire la parola \code{"ciao"} nei corrispondenti codici ASCII decimali e binari.
+
+  \item La seguente sequenza di byte rappresenta una parola in ASCII. Ricostruire il testo:
+  \[
+  01001000\quad 01101001\quad 00100001
+  \]
+
+  \item Quanti byte occupa in UTF-8 la parola \code{"computer"}? Motivare la risposta.
+
+  \item Quanti byte occupa in UTF-8 la parola \code{"città"}? Confrontare il risultato con l’esercizio precedente.
+
+  \item Il carattere \code{'è'} ha code point Unicode \code{U+00E8}.
+  \begin{enumerate}
+    \item Scrivere il valore decimale del code point.
+    \item Indicare quanti byte vengono utilizzati in UTF-8.
+    \item Scrivere la rappresentazione binaria UTF-8 completa.
+  \end{enumerate}
+
+  \item Il simbolo \code{'€'} viene codificato in UTF-8 utilizzando 3 byte. Il suo code point Unicode è \texttt{U+20AC}.
+  \begin{enumerate}
+    \item Spiegare perché non può essere rappresentato con un solo byte.
+    \item Indicare il pattern UTF-8 utilizzato.
+  \end{enumerate}
+
+  \item Osservare la seguente sequenza di byte:
+  \[
+  11000011\ 10101000
+  \]
+  \begin{enumerate}
+    \item Indicare se si tratta dell’inizio di un carattere o di un byte di continuazione.
+    \item Indicare quanti byte occupa complessivamente il carattere.
+    \item Indicare quale carattere viene rappresentato.
+  \end{enumerate}
+
+  \item Un file di testo contiene 10\,000 caratteri ASCII e 500 caratteri accentati.
+  \begin{enumerate}
+    \item Calcolare quanti byte occupa il file in UTF-8.
+    \item Calcolare quanti byte avrebbe occupato se ogni carattere fosse stato rappresentato utilizzando 2 byte fissi.
+  \end{enumerate}
+
+  \item Spiegare perché UTF-8 è una codifica a lunghezza variabile ma non richiede separatori tra i caratteri.
+
+  \item Un programma legge un file UTF-8 byte per byte. Spiegare come riesce a capire dove inizia e dove termina ciascun carattere.
+
+  % Nuovi esercizi
+  \item Scrivere il codice ASCII decimale e binario (8 bit) dei seguenti caratteri:
+  \begin{itemize}
+    \item \code{'B'}
+    \item \code{'z'}
+    \item \code{'9'}
+    \item punto (\code{'.'})
+  \end{itemize}
+
+  \item Convertire la parola \code{"sole"} nei corrispondenti codici ASCII decimali e binari.
+
+\end{enumerate}
+
+\newpage
+
+
+\subsection{Codifica delle immagini}
+
+\begin{enumerate}
+  \item Un’immagine in bianco e nero ha risoluzione $10 \times 10$ pixel.
+  \begin{enumerate}
+    \item Quanti pixel contiene?
+    \item Quanti bit sono necessari per rappresentarla?
+  \end{enumerate}
+
+  \item Un’immagine in scala di grigi utilizza 8 bit per pixel.
+  \begin{enumerate}
+    \item Quanti livelli di grigio possono essere rappresentati?
+    \item Quanti byte occupa un’immagine di risoluzione $100 \times 100$ pixel?
+  \end{enumerate}
+
+  \item Un pixel RGB è rappresentato dalla tripla $(255, 0, 0)$.
+  \begin{enumerate}
+    \item Indicare il colore rappresentato.
+    \item Scrivere il codice esadecimale corrispondente.
+  \end{enumerate}
+
+  \item Convertire i seguenti colori dal modello RGB alla rappresentazione esadecimale:
+  \begin{enumerate}
+    \item $(0, 0, 0)$
+    \item $(255, 255, 255)$
+    \item $(0, 255, 0)$
+    \item $(128, 128, 128)$
+  \end{enumerate}
+
+  \item Un’immagine RGB Full HD ($1920 \times 1080$) utilizza 24 bit per pixel.
+  \begin{enumerate}
+    \item Calcolare il numero totale di pixel.
+    \item Calcolare il numero totale di bit necessari.
+    \item Calcolare lo spazio occupato in MB, assumendo assenza di compressione.
+  \end{enumerate}
+
+  \item Disegnare una griglia $8 \times 8$ che rappresenti una lettera a scelta utilizzando 1 bit per pixel, dove 0 indica un pixel spento e 1 indica un pixel acceso. Scrivere la sequenza di bit risultante.
+
+  \item Un’immagine utilizza 4 bit per pixel.
+  \begin{enumerate}
+    \item Quanti colori distinti può rappresentare?
+    \item Spiegare se tale profondità di colore è sufficiente per rappresentare una fotografia realistica.
+  \end{enumerate}
+
+  \item Un’immagine viene salvata come sequenza di bit senza specificare risoluzione e profondità di colore.
+  \begin{enumerate}
+    \item Spiegare perché non è possibile ricostruire correttamente l’immagine.
+    \item Indicare quali informazioni minime sarebbero necessarie.
+  \end{enumerate}
+
+  \item Due immagini occupano lo stesso spazio in byte, ma una è in bianco e nero e l’altra è a colori.
+  \begin{enumerate}
+    \item Spiegare come ciò sia possibile.
+    \item Indicare almeno due parametri che possono essere diversi.
+  \end{enumerate}
+
+  \item Un’immagine RGB utilizza esclusivamente i valori 0 e 255 per ciascun canale.
+  \begin{enumerate}
+    \item Quanti colori distinti è possibile rappresentare?
+    \item Descrivere l’aspetto visivo atteso dell’immagine.
+  \end{enumerate}
+
+  \item Una piccola icona ha dimensione {100 $\times$ 100} pixel.  
     \begin{enumerate}
         \item Quanti pixel totali contiene?
         \item Se è in bianco e nero (1 bit per pixel), quanti byte servono per memorizzarla?
         \item Se è a 24 bit per pixel, quanti byte servono?
     \end{enumerate}
 
-    \item Considerando un'immagine Full HD, con risoluzione {1920 $\times$ 1080} pixel
+  \item Considerando un'immagine Full HD, con risoluzione {1920 $\times$ 1080} pixel
     \begin{enumerate}
         \item Quanti pixel totali contiene l'immagine?
         \item Se l'immagine è in bianco e nero (1 bit per pixel), quanti byte sono necessari per memorizzarla?
         \item Se l'immagine è a colori con profondità di colore di 24 bit per pixel (modello RGB, 8 bit per ogni canale di colore), quanti byte sono necessari per rappresentare l'immagine? A quanti megabyte circa corrisponde questa dimensione?
     \end{enumerate}
+
+  % Nuovi esercizi
+  \item Un’immagine in bianco e nero ha risoluzione $12 \times 8$ pixel.
+    \begin{enumerate}
+        \item Quanti pixel contiene?
+        \item Quanti bit sono necessari per rappresentarla?
+    \end{enumerate}
+
+  \item Un’immagine utilizza 16 bit per pixel e ha risoluzione $50 \times 40$ pixel.
+    \begin{enumerate}
+        \item Quanti colori distinti può rappresentare?
+        \item Quanti byte occupa l’immagine?
+    \end{enumerate}
+
 \end{enumerate}
 
 
