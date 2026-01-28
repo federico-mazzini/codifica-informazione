@@ -1495,8 +1495,8 @@ Un comportamento analogo si osserva in molti file PDF: durante lo zoom, testo e 
 
 \subsubsection*{Il colore nei materiali: sintesi sottrattiva}
 
-Nella stampa e nella pittura i materiali non emettono luce, ma riflettono la luce che li colpisce.
-Il colore si ottiene quindi tramite sintesi sottrattiva, perché i pigmenti assorbono una parte della luce e ne riflettono solo una parte. 
+Nella stampa e nella pittura i materiali non emettono luce, ma la riflettono.
+Il colore è quindi il risultato di una sintesi sottrattiva, perché i pigmenti assorbono una parte della luce e ne riflettono solo una parte. 
 I \textbf{colori primari} del modello sottrattivo sono: 
 \begin{itemize}
   \item ciano (C)
@@ -1506,7 +1506,7 @@ I \textbf{colori primari} del modello sottrattivo sono:
 Nella pratica vengono spesso indicati in modo semplificato come blu, rosso e giallo.
 
 In questo modello, aggiungendo colori viene assorbita sempre più luce.
-Di conseguenza, combinando più colori si ottengono colori sempre più scuri, fino a tendere al nero.
+Di conseguenza, combinando più colori si ottengono colori sempre più scuri, fino a tendere al nero. A destra è mostrata una rappresentazione grafica della sintesi sottrattiva.
 
 
 \begin{center}
@@ -1530,7 +1530,7 @@ Nella sintesi additiva, aumentando la quantità di luce emessa, il colore risult
 
 \subsection{Pixel e subpixel fisici}
 
-Come visto nella sintesi additiva, il colore sugli schermi si ottiene sommando luce.  
+Come visto alla sezione precedente, il colore sugli schermi si ottiene sommando luce.
 Questa somma avviene fisicamente all’interno dei \textbf{pixel} che compongono lo schermo.
 
 Sugli schermi digitali (monitor, smartphone, tablet, TV) l'immagine è formata da una griglia di \textbf{pixel}.  
@@ -1555,9 +1555,7 @@ Ad esempio, se è acceso solo il subpixel rosso e gli altri due sono spenti, il 
 Combinando la luce emessa dai tre subpixel con diverse intensità si ottengono tutti i colori visualizzati sullo schermo.
 
 \subsection{Il modello RGB numerico}
-Dal punto di vista informatico (e quindi delle informazioni che i dispositivi digitali codificano), ogni subpixel RGB di un pixel viene rappresentato tramite un numero intero.  
-Il colore di un pixel è quindi descritto come una \textbf{tripla di numeri} $(R, G, B)$, che indica quanta luce viene emessa dai subpixel rosso, verde e blu.
-
+Dal punto di vista informatico (e quindi delle informazioni che i dispositivi digitali codificano), il colore di un pixel è quindi descritto come una \textbf{tripla di numeri} $(R, G, B)$, indicante quanta luce viene emessa dai subpixel rosso, verde e blu. \\
 Nel modello più comune:
 \begin{itemize}
   \item ogni componente (R, G, B) può assumere valori da 0 a 255;
@@ -1568,17 +1566,15 @@ Nel modello più comune:
 
 \subsubsection*{Codifica esadecimale dei colori}
 
-Spesso i colori RGB vengono spesso scritti in \textbf{notazione esadecimale}.
-
-Essendo che, come visto alle sezioni precedenti 4 bit rappresentano esattamente una cifra esadecimale, per ogni canale R,G, B sono necessari 8 bit (1 byte). La forma generale è quindi la seguente:
+La tripla $(R, G, B)$ viene spesso scritta in \textbf{notazione esadecimale}: dove ogni canale $(R, G, B)$ viene rappresentato con 2 cifre esadecimali. La forma generale è quindi la seguente:
 \[
 \#RRGGBB
 \]
 Dove:
 \begin{itemize}
-  \item RR rappresenta il valore del rosso in esadecimale;
-  \item GG rappresenta il valore del verde in esadecimale;
-  \item BB rappresenta il valore del blu in esadecimale.
+  \item RR indica che le prime due cifre esadecimali rappresentano il rosso;
+  \item GG indica che le prime due cifre esadecimali rappresentano il verde;
+  \item BB indica che le prime due cifre esadecimali rappresentano il blu.
 \end{itemize}
 
 
@@ -1592,7 +1588,6 @@ I selettori di colore presenti nei software di grafica e sul web mostrano lo ste
   \item come tripla RGB;
   \item come codice esadecimale (HEX).
 \end{itemize}
-
 Sotto alcuni esempi di colori rappresentati in queste tre forme equivalenti.
 
 \begin{center}
@@ -1624,8 +1619,7 @@ Sotto alcuni esempi di colori rappresentati in queste tre forme equivalenti.
 \setcounter{equation}{0}
 \newpage
 
-\section{Binario}
-\subsection{Decifratore di Codici}
+\section{Esercizi -- Binario}
 
 \begin{enumerate}
   \item In questo esercizio ogni lettera dell'alfabeto viene rappresentata dal suo numero corrispondente (A=1, B=2, ..., Z=26, spazio vuoto=0).  
@@ -1649,7 +1643,6 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 \end{center}
 \end{enumerate}
 
-\subsection{Domande}
 \begin{enumerate}
 \setcounter{enumi}{1}
 
@@ -1681,8 +1674,6 @@ Il numero viene poi convertito in \textbf{binario} utilizzando il minor numero d
 \end{enumerate}
 \end{enumerate}
 
-\subsection{Messaggio segreto in bianco e nero}
-
 \begin{enumerate}
 \setcounter{enumi}{10}
 \item Dati i seguenti numeri, convertirli in binario e riportarli su una griglia 6 x 9, colorando quando le caselle con bit = 1. 
@@ -1710,9 +1701,8 @@ Che cosa appare sul foglio?
 
 
 \newpage
-\section{Esadecimale}
+\section{Esercizi -- Esadecimale}
 
-\subsection{Domande}
 
 \begin{enumerate}
 \item In codifica esadecimale, scrivere i numeri successivi ai seguenti:
@@ -1785,10 +1775,8 @@ Che cosa appare sul foglio?
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Esercizi -- Codifica dei caratteri e delle immagini}
+\section{Esercizi -- Codifica dei caratteri}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Codifica dei caratteri}
 
 \begin{enumerate}
   \item Scrivere il codice ASCII decimale e binario (8 bit) dei seguenti caratteri:
@@ -1874,7 +1862,7 @@ Che cosa appare sul foglio?
 \newpage
 
 
-\subsection{Codifica delle immagini}
+\section{Esercizi -- Codifica delle immagini}
 
 \begin{enumerate}
   \item Un’immagine in bianco e nero ha risoluzione $10 \times 10$ pixel.
